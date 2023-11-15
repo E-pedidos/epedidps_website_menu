@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { Header } from './components/Haeder'
+import { HeaderMenu } from './components/Haeder'
 import { Footer } from './components/Footer'
 
 
@@ -20,7 +20,7 @@ export default function Layout({
   return (
     <html lang="pt-Br">
       <body className={inter.className}>
-        <Header />
+        <HeaderMenu />
         {children}
         <Footer />
       </body>
