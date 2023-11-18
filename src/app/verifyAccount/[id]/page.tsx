@@ -11,7 +11,7 @@ export default function VerifyAccountId() {
       {loading ? (
         <div className="text-center text-white bg-green-500 rounded-xl p-5 shadow-md">
           <h1>SUA CONTA FOI VERIFICADA COM SUCESSO</h1>
-          <p>Agradecemos soua preferência!</p>
+          <p>Agradecemos sua preferência!</p>
           <span className="text-sm">você pode acessar o app agora</span>
         </div>
       ) : (
