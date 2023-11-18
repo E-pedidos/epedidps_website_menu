@@ -24,7 +24,7 @@ export const useResetPasswoord = () => {
         newConfPassword,
       };
 
-      const res = await api.post(`auth/verifyAccount/${token}`, obj);
+      const res = await api.post(`/auth/resetPassword/${token}`, obj);
 
       if (res.status === 201) {
         return setLoading(true);
