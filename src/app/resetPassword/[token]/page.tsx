@@ -15,8 +15,7 @@ export default function VerifyAccountId() {
     <div className="bg-[url('/background.png')] bg-cover  h-screen bg-orange-500 flex flex-col items-center pt-40 gap-4 px-2">
       {loading ? (
         <div className="text-center text-white bg-green-500 rounded-xl p-5 shadow-md">
-          <h1>SUA CONTA FOI VERIFICADA COM SUCESSO</h1>
-          <p>Agradecemos soua preferência!</p>
+          <h1>SUA SENHA FOI ATUALIZADA</h1>
           <span className="text-sm">você pode acessar o app agora</span>
         </div>
       ) : (
