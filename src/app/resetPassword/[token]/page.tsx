@@ -1,15 +1,19 @@
-"use client";
-
+'use client'
 import { useResetPasswoord } from "@/hook/useResetPassword";
 import { useParams } from "next/navigation";
-import { useState } from "react";
 
 export default function VerifyAccountId() {
   const { token } = useParams();
-  const [newPassword, setNewPassword] = useState<string>("");
-  const [newConfPassword, setNewConfPassword] = useState<string>("");
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-  const { loading, resetPassword } = useResetPasswoord();
+  const { 
+    loading, 
+    resetPassword,
+    isVisible,
+    newConfPassword,
+    newPassword,
+    setIsVisible,
+    setNewConfPassword,
+    setNewPassword
+  } = useResetPasswoord();
 
   return (
     <div className="bg-[url('/background.png')] bg-cover  h-screen bg-orange-500 flex flex-col items-center pt-40 gap-4 px-2">

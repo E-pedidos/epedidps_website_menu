@@ -3,6 +3,9 @@ import { useState } from "react";
 
 export const useResetPasswoord = () => {
   const [loading, setLoading] = useState<boolean>(false);
+  const [newPassword, setNewPassword] = useState<string>("");
+  const [newConfPassword, setNewConfPassword] = useState<string>("");
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const resetPassword = async (
     token: string,
@@ -41,5 +44,11 @@ export const useResetPasswoord = () => {
   return {
     loading,
     resetPassword,
+    newPassword,
+    setNewPassword,
+    newConfPassword,
+    setNewConfPassword,
+    isVisible,
+    setIsVisible
   };
 };
