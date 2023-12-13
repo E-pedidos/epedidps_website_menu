@@ -9,20 +9,25 @@ import { CardList } from "./components/Card/CardList";
 import { Footer } from "./components/Footer";
 export default function MenuFilial() {
   const { id } = useParams();
-  const { getDataFilial } = useMenuFilial();
+  const { getDataFilial, foodCategorys } = useMenuFilial();
 
   useEffect(() => {
     const idFilial = id.toString();
     getDataFilial(idFilial);
   }, []);
+
   return (
     <>
       <div className="flex flex-col items-center overflow-x-hidden mb-11">
         <Information />
         <Emphasis />
-        <Menu title="pratos">
-          <CardList />
-        </Menu>
+        {foodCategorys.map((item) => {
+          return (
+            <Menu key={item.name} title={item.name}>
+              <CardList />
+            </Menu>
+          );
+        })}
       </div>
       <Footer />
     </>
