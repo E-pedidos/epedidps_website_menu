@@ -1,11 +1,6 @@
-'use client'
 import Image from "next/image"
-import { usePathname } from 'next/navigation'
 
 export const HeaderHome = () => {
-    const pathName = usePathname()
-
-
         return (
             <header className="flex flex-col bg-white overflow-x-hidden p-1">
                 <div className="flex items-center w-screen justify-between">

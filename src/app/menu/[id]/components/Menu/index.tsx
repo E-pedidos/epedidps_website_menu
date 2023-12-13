@@ -1,7 +1,7 @@
 import { IMenu } from "@/types"
 import { CardList } from "../Card/CardList"
 
-export const Menu = ({title, items}: IMenu) => {
+export const Menu = ({title, children}: IMenu) => {
     return (
         <section id={title}>
             <div className="custom-border pl-8 p-5 bg-white w-screen">
@@ -10,7 +10,7 @@ export const Menu = ({title, items}: IMenu) => {
                 </h1>
             </div>
             <div>
-                <CardList />
+                {children}
             </div>
         </section>
     )
