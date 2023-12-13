@@ -8,7 +8,8 @@ export interface ICard {
 }
 
 export interface IMenu {
-    title: string
+    title: string,
+    items?: ICard[]
 }
 
 export interface ModalProps {

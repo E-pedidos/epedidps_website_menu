@@ -18,7 +18,7 @@ export const Footer = () => {
       </div>
       <div className="group relative">
         <Link
-          href='/menu/orders'
+          href='/orders'
           prefetch
         >
           <Image
