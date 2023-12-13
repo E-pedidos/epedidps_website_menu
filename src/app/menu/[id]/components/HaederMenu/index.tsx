@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export const HeaderMenu = () => {
   return (
-    <div className="flex flex-col bg-slate-200 relative  overflow-x-hidden z-0 p-2">
+    <div className="flex flex-col bg-slate-200 relative p-2">
       <div className="flex items-center w-screen justify-between">
         <div className="flex flex-col gap-1 mb-6">
           <div className="flex items-center gap-1">

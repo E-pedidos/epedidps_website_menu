@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useParams } from "next/navigation";
 import { Emphasis } from "./components/Emphasis";
 import { Information } from "./components/Information";
@@ -6,22 +6,25 @@ import { Menu } from "./components/Menu";
 import { useMenuFilial } from "@/hook/useMenuFilial";
 import { useEffect } from "react";
 import { CardList } from "./components/Card/CardList";
-
+import { Footer } from "./components/Footer";
 export default function MenuFilial() {
-  const {id} = useParams()
-  const {getDataFilial} = useMenuFilial()
+  const { id } = useParams();
+  const { getDataFilial } = useMenuFilial();
 
-  useEffect(()=>{
-    const idFilial = id.toString()
-    getDataFilial(idFilial)
-  }, [])
+  useEffect(() => {
+    const idFilial = id.toString();
+    getDataFilial(idFilial);
+  }, []);
   return (
-    <main className="flex flex-col items-center overflow-x-hidden mb-11">
+    <>
+      <div className="flex flex-col items-center overflow-x-hidden mb-11">
         <Information />
         <Emphasis />
         <Menu title="pratos">
-          <CardList/>
+          <CardList />
         </Menu>
-    </main>
+      </div>
+      <Footer />
+    </>
   );
 }

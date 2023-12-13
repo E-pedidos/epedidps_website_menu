@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { HeaderMenu } from "./components/Haeder";
-import { Footer } from "./components/Footer";
+import { HeaderMenu } from "./components/HaederMenu";
+
 
 export const metadata: Metadata = {
   title: "E-pedidos Cardapio",
@@ -10,12 +10,9 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-Br">
-      <body >
-          <HeaderMenu />
-          {children}
-          <Footer />
-      </body>
-    </html>
+    <>
+      <HeaderMenu />
+      {children}
+    </>
   );
 }
