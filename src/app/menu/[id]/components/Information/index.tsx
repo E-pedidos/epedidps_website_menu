@@ -1,6 +1,6 @@
 import { Avatar } from "../Avatar";
 
-export const Information = () => {
+export const Information = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className="
@@ -14,8 +14,7 @@ export const Information = () => {
         p-4
         "
     >
-      <h1 className="font-bold tracking-wider text-xl">EcoVibe Bistrô</h1>
-      <Avatar />
+      {children}
     </div>
   );
 };
