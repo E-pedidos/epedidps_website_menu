@@ -2,7 +2,6 @@
 import Image from "next/image";
 import { CardOrders } from "./components/CardOrder";
 import { FormsOrder } from "./components/Form";
-import { Footer } from "../menu/[id]/components/Footer";
 
 export default function OrdersPage() {
     return (
@@ -34,7 +33,6 @@ export default function OrdersPage() {
                 </div>
                 <FormsOrder />
             </section>
-            <Footer />
         </main>
     )
 }

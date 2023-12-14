@@ -1,6 +1,13 @@
+'use client'
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export const HeaderMenu = () => {
+  const path = usePathname()
+  
+  if(path === '/menu/orders'){
+    return
+  }
   return (
     <div className="flex flex-col bg-slate-200 h-52 z-0 relative">
       <div className="flex items-center w-screen justify-between p-2">

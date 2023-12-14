@@ -1,14 +1,15 @@
 "use client";
 import { useParams } from "next/navigation";
-import { Emphasis } from "./components/Emphasis";
-import { Information } from "./components/Information";
-import { Menu } from "./components/Menu";
+import { Emphasis } from "../components/Emphasis";
+import { Information } from "../components/Information";
+import { Menu } from "../components/Menu";
 import { useMenuFilial } from "@/hook/useMenuFilial";
-import { useEffect } from "react";
-import { CardList } from "./components/Card/CardList";
-import { Footer } from "./components/Footer";
-import { CardEmphasis } from "./components/Card/CardEmphasis";
-import { Avatar } from "./components/Avatar";
+import { Suspense, useEffect } from "react";
+import { CardList } from "../components/Card/CardList";
+import { Footer } from "../components/Footer";
+import { CardEmphasis } from "../components/Card/CardEmphasis";
+import { Avatar } from "../components/Avatar";
+import { Spiner } from "@/app/components/Loading";
 export default function MenuFilial() {
   const { id } = useParams();
   const { getDataFilial, foodCategorys, itemsTrending, nameFilial, avatarUrl } =
@@ -24,26 +25,25 @@ export default function MenuFilial() {
       <main className="flex flex-col items-center overflow-x-hidden pb-11 z-2 absolute top-24">
         <Information>
           <h1 className="font-bold tracking-wider text-x">{nameFilial}</h1>
-          <Avatar image={avatarUrl}/>
+            <Avatar image={avatarUrl} />
         </Information>
-        <Emphasis>
-          {itemsTrending.map((item) => {
-            return <CardEmphasis  key={item.id} {...item}/>;
+          <Emphasis>
+            {itemsTrending.map((item) => {
+              return <CardEmphasis key={item.id} {...item} />;
+            })}
+          </Emphasis>
+          {foodCategorys.map((item) => {
+            return item.items.length > 0 ? (
+              <Menu key={item.name} title={item.name}>
+                {item.items.map((foodItem) => {
+                  return <CardList key={foodItem.id} {...foodItem} />;
+                })}
+              </Menu>
+            ) : (
+              ""
+            );
           })}
-        </Emphasis>
-        {foodCategorys.map((item) => {
-          return item.items.length > 0 ? (
-            <Menu key={item.name} title={item.name}>
-              {item.items.map((foodItem) => {
-                return <CardList key={foodItem.id} {...foodItem} />;
-              })}
-            </Menu>
-          ) : (
-            ""
-          );
-        })}
       </main>
-      <Footer />
     </>
   );
 }
