@@ -1,5 +1,3 @@
-import { CardEmphasis } from "../Card/CardEmphasis"
-
 export const Emphasis = ({ children }: { children: React.ReactNode }) => {
     return (
         <nav className="bg-gradient-to-r from-red-500 to-orange-500 w-screen p-5">

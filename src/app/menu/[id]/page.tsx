@@ -21,7 +21,7 @@ export default function MenuFilial() {
 
   return (
     <>
-      <div className="flex flex-col items-center overflow-x-hidden pb-11 z-2 absolute top-24">
+      <main className="flex flex-col items-center overflow-x-hidden pb-11 z-2 absolute top-24">
         <Information>
           <h1 className="font-bold tracking-wider text-x">{nameFilial}</h1>
           <Avatar image={avatarUrl}/>
@@ -42,7 +42,7 @@ export default function MenuFilial() {
             ""
           );
         })}
-      </div>
+      </main>
       <Footer />
     </>
   );
