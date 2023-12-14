@@ -14,7 +14,7 @@ export const useMenuFilial = () => {
         transformResponse: [
           function (data: any) {
             const dataResponse = JSON.parse(data)
-
+            
             const payload = {
               foodCategorys: dataResponse.filial.foodCategorys,
               avatarUrl: dataResponse.filial.franchise.user.avatar_url,
@@ -40,7 +40,7 @@ export const useMenuFilial = () => {
       const isTrendingResponse: ICard[] = data.itemsIsTrending
 
       setFoodCategorys(foodCategorysResponse)
-      setAvatarUrl(data.payload.avatar_url)
+      setAvatarUrl(data.payload.avatarUrl)
       setNameFilial(data.payload.name)
       setItemsTrending(isTrendingResponse)
     } catch (error) {

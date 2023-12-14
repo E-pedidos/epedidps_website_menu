@@ -11,7 +11,8 @@ import { CardEmphasis } from "./components/Card/CardEmphasis";
 import { Avatar } from "./components/Avatar";
 export default function MenuFilial() {
   const { id } = useParams();
-  const { getDataFilial, foodCategorys, itemsTrending, nameFilial } = useMenuFilial();
+  const { getDataFilial, foodCategorys, itemsTrending, nameFilial, avatarUrl } =
+    useMenuFilial();
 
   useEffect(() => {
     const idFilial = id.toString();
@@ -22,34 +23,23 @@ export default function MenuFilial() {
     <>
       <div className="flex flex-col items-center overflow-x-hidden pb-11 z-2 absolute top-24">
         <Information>
-          <h1 className="font-bold tracking-wider text-x">
-            {nameFilial}
-          </h1>
-          <Avatar />
+          <h1 className="font-bold tracking-wider text-x">{nameFilial}</h1>
+          <Avatar image={avatarUrl}/>
         </Information>
         <Emphasis>
-          {
-            itemsTrending.map((item)=>{
-              return (
-                <CardEmphasis />
-              )
-            })
-          }
+          {itemsTrending.map((item) => {
+            return <CardEmphasis />;
+          })}
         </Emphasis>
         {foodCategorys.map((item) => {
-          return (
-            item.items.length > 0 ?
+          return item.items.length > 0 ? (
             <Menu key={item.name} title={item.name}>
               {item.items.map((foodItem) => {
-                return (
-                  <CardList
-                    key={foodItem.id}
-                    {...foodItem}
-                  />
-                );
+                return <CardList key={foodItem.id} {...foodItem} />;
               })}
             </Menu>
-            : ''
+          ) : (
+            ""
           );
         })}
       </div>
