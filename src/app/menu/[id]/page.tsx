@@ -8,9 +8,10 @@ import { useEffect } from "react";
 import { CardList } from "./components/Card/CardList";
 import { Footer } from "./components/Footer";
 import { CardEmphasis } from "./components/Card/CardEmphasis";
+import { Avatar } from "./components/Avatar";
 export default function MenuFilial() {
   const { id } = useParams();
-  const { getDataFilial, foodCategorys, itemsTrending } = useMenuFilial();
+  const { getDataFilial, foodCategorys, itemsTrending, nameFilial } = useMenuFilial();
 
   useEffect(() => {
     const idFilial = id.toString();
@@ -20,16 +21,19 @@ export default function MenuFilial() {
   return (
     <>
       <div className="flex flex-col items-center overflow-x-hidden pb-11 z-2 absolute top-24">
-        <Information />
+        <Information>
+          <h1 className="font-bold tracking-wider text-x">
+            {nameFilial}
+          </h1>
+          <Avatar />
+        </Information>
         <Emphasis>
           {
-            itemsTrending.length > 0 ?
             itemsTrending.map((item)=>{
               return (
                 <CardEmphasis />
               )
             })
-            : null
           }
         </Emphasis>
         {foodCategorys.map((item) => {
