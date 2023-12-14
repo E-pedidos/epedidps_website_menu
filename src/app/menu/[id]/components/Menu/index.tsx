@@ -1,5 +1,4 @@
 import { IMenu } from "@/types"
-import { CardList } from "../Card/CardList"
 
 export const Menu = ({title, children}: IMenu) => {
     return (

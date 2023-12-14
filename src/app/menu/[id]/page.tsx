@@ -7,9 +7,10 @@ import { useMenuFilial } from "@/hook/useMenuFilial";
 import { useEffect } from "react";
 import { CardList } from "./components/Card/CardList";
 import { Footer } from "./components/Footer";
+import { CardEmphasis } from "./components/Card/CardEmphasis";
 export default function MenuFilial() {
   const { id } = useParams();
-  const { getDataFilial, foodCategorys } = useMenuFilial();
+  const { getDataFilial, foodCategorys, itemsTrending } = useMenuFilial();
 
   useEffect(() => {
     const idFilial = id.toString();
@@ -18,11 +19,20 @@ export default function MenuFilial() {
 
   return (
     <>
-      <div className="flex flex-col items-center overflow-x-hidden mb-11">
+      <div className="flex flex-col items-center overflow-x-hidden pb-11 z-2 absolute top-24">
         <Information />
-        <Emphasis />
+        <Emphasis>
+          {
+            itemsTrending.map((item)=>{
+              return (
+                <CardEmphasis />
+              )
+            })
+          }
+        </Emphasis>
         {foodCategorys.map((item) => {
           return (
+            item.items.length > 0 ?
             <Menu key={item.name} title={item.name}>
               {item.items.map((foodItem) => {
                 return (
@@ -33,6 +43,7 @@ export default function MenuFilial() {
                 );
               })}
             </Menu>
+            : ''
           );
         })}
       </div>
