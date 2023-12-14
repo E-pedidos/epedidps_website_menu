@@ -1,16 +1,14 @@
 "use client";
+import { useMenuFilial } from "@/hook/useMenuFilial";
 import { useParams } from "next/navigation";
+import { useEffect } from "react";
+import { Avatar } from "../components/Avatar";
+import { CardEmphasis } from "../components/Card/CardEmphasis";
+import { CardList } from "../components/Card/CardList";
 import { Emphasis } from "../components/Emphasis";
 import { Information } from "../components/Information";
 import { Menu } from "../components/Menu";
-import { useMenuFilial } from "@/hook/useMenuFilial";
-import { Suspense, useEffect } from "react";
-import { CardList } from "../components/Card/CardList";
-import { Footer } from "../components/Footer";
-import { CardEmphasis } from "../components/Card/CardEmphasis";
-import { Avatar } from "../components/Avatar";
-import { Spiner } from "@/app/components/Loading";
-export default function MenuFilial() {
+export default async function MenuFilial() {
   const { id } = useParams();
   const { getDataFilial, foodCategorys, itemsTrending, nameFilial, avatarUrl } =
     useMenuFilial();

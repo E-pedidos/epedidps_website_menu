@@ -7,9 +7,12 @@ export const useMenuFilial = () => {
   const [itemsTrending, setItemsTrending] = useState<ICard[]>([])
   const [nameFilial, setNameFilial] = useState<string>("")
   const [avatarUrl, setAvatarUrl] = useState<string>("")
+  const [isLoading, setIsLoading] = useState(false)
+
 
   const getDataFilial = async (id: string) => {
     try {
+      setIsLoading(true)
       const config = {
         transformResponse: [
           function (data: any) {
@@ -43,8 +46,11 @@ export const useMenuFilial = () => {
       setAvatarUrl(data.payload.avatarUrl)
       setNameFilial(data.payload.name)
       setItemsTrending(isTrendingResponse)
+      setIsLoading(false)
     } catch (error) {
-      console.error(error);
+      console.error(error)
+    }finally {
+      setIsLoading(false)
     }
   }
 
