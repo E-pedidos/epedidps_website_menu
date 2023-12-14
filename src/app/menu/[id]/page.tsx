@@ -23,11 +23,13 @@ export default function MenuFilial() {
         <Information />
         <Emphasis>
           {
+            itemsTrending.length > 0 ?
             itemsTrending.map((item)=>{
               return (
                 <CardEmphasis />
               )
             })
+            : null
           }
         </Emphasis>
         {foodCategorys.map((item) => {
