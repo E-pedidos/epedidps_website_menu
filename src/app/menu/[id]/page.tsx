@@ -24,7 +24,14 @@ export default function MenuFilial() {
         {foodCategorys.map((item) => {
           return (
             <Menu key={item.name} title={item.name}>
-              <CardList />
+              {item.items.map((foodItem) => {
+                return (
+                  <CardList
+                    key={foodItem.id}
+                    {...foodItem}
+                  />
+                );
+              })}
             </Menu>
           );
         })}

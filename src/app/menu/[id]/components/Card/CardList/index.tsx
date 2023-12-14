@@ -2,7 +2,14 @@
 import Image from "next/image"
 import { useState } from "react"
 
-export const CardList = () => {
+type CardProps = {
+    name: string,
+    description: string,
+    photo_url: string,
+    valor: string
+}
+
+export const CardList = ({name, description, photo_url, valor}: CardProps) => {
     const [count, setCount] = useState<number>(0)
 
     const handleAdd = ()=>{
@@ -20,10 +27,10 @@ export const CardList = () => {
             <div className="flex items-center">
                 <div className=" w-full">
                     <h2 className="text-xs font-semibold">
-                        Sanduíche de espinafreSanduíche de espinafre
+                        {name}
                     </h2>
                     <p className="text-xs">
-                        Sanduíche de espinafre com queijo prato e molho da casa
+                        {description}
                     </p>
                 </div>
                 <Image
@@ -40,7 +47,7 @@ export const CardList = () => {
                 className="flex items-center justify-between gap-1"
             >
                 <span className="text-green-600">
-                    R$ 20,99
+                    R$ {valor}
                 </span>
                 <div className="flex gap-2 mr-16 pr-8">
                     <button
