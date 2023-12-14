@@ -28,7 +28,7 @@ export default function MenuFilial() {
         </Information>
         <Emphasis>
           {itemsTrending.map((item) => {
-            return <CardEmphasis />;
+            return <CardEmphasis  key={item.id} {...item}/>;
           })}
         </Emphasis>
         {foodCategorys.map((item) => {

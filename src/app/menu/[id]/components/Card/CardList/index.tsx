@@ -2,7 +2,7 @@
 import Image from "next/image"
 import { useState } from "react"
 
-type CardProps = {
+export type CardProps = {
     name: string,
     description: string,
     photo_url: string,

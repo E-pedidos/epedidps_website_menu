@@ -1,6 +1,7 @@
 import Image from "next/image"
+import { CardProps } from "../CardList"
 
-export const CardEmphasis = () => {
+export const CardEmphasis = ({name, photo_url, valor}: CardProps) => {
     return (
         <div className="bg-white rounded">
             <Image
@@ -14,10 +15,10 @@ export const CardEmphasis = () => {
             />
             <div className="w-40 p-2">
                 <h2 className="text-xs">
-                    Sanduíche de rúcula
+                    {name}
                 </h2>
                 <p className="text-xs">
-                    R$ 19,99
+                    R$ {valor}
                 </p>
             </div>
         </div>
