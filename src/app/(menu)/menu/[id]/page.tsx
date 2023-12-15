@@ -28,7 +28,7 @@ export default function MenuFilial() {
   return (
     <>
       {isLoading && <Spiner />}
-      <main className="flex flex-col items-center overflow-x-hidden pb-11 z-2 absolute top-24">
+      <main className="flex flex-col overflow-x-hidden pb-11 z-2 absolute top-24">
         <Information>
           { !isLoading ?
             <>

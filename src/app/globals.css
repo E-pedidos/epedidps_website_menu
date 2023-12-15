@@ -19,9 +19,3 @@ body {
 .custom-border-top {
     border-top: 0.5px solid rgba(0, 0, 0, 0.12);
 }
-
-.bg-img{
-    background-image: url('/public/background.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
