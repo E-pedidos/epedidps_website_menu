@@ -1,9 +1,9 @@
 "use client";
-import { MenuContext } from "@/store/menuStore";
-import { useContext } from "react";
+
+import { useMenuContext } from "@/store/menuStore";
 
 export const ListItems = async () => {
-  const { listItems } = useContext(MenuContext);
+  const { listItems } = useMenuContext();
   return (
     <>{listItems.length > 0 ? listItems.map((item) => "1") : "Não há items"}</>
   );

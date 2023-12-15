@@ -1,6 +1,6 @@
 "use client";
 import { ICardOrder } from "@/types";
-import { ReactNode, createContext, useEffect, useState } from "react";
+import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 
 interface IMenuProps {
   children: ReactNode;
@@ -66,3 +66,5 @@ export function MenuProvider({ children }: IMenuProps) {
     </MenuContext.Provider>
   );
 }
+
+export const useMenuContext = ()=> useContext(MenuContext)
