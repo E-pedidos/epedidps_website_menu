@@ -57,3 +57,11 @@ export interface ModalProps {
   onClose: () => void;
   children: ReactNode;
 }
+
+export interface ICardOrder {
+  id: string
+  nameItemOrder: string
+  valueItemOrder: number
+  quantityItemOrder: number
+}
+ 

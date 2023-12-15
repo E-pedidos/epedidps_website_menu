@@ -1,9 +1,9 @@
-
 import Image from "next/image";
-import { CardOrders } from "./components/CardOrder";
 import { FormsOrder } from "./components/Form";
+import { ListItems } from "./components/ListItem";
 
 export default function OrdersPage() {
+    
     return (
         <main className="bg-white flex-col items-center overflow-x-hidden">
             <section
@@ -25,11 +25,7 @@ export default function OrdersPage() {
                     <p>R$ 68,25</p>
                 </div>
                 <div className="h-80 border flex-col border-blue-500 rounded-lg p-2 overflow-auto mb-1">
-                    <CardOrders />
-                    <CardOrders />
-                    <CardOrders />
-                    <CardOrders />
-                    <CardOrders />
+                    <ListItems />
                 </div>
                 <FormsOrder />
             </section>

@@ -47,12 +47,12 @@ export default function MenuFilial() {
           return item.items.length > 0 ? (
             <Menu key={item.name} title={item.name}>
               {item.items.map((foodItem) => {
-                return <CardList key={foodItem.id} {...foodItem} />;
+                return <CardList key={foodItem.id} {...foodItem} />
               })}
             </Menu>
           ) : (
             ""
-          );
+          )
         })}
       </main>
     </>
