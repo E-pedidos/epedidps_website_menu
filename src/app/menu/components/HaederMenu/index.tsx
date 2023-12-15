@@ -9,7 +9,7 @@ export const HeaderMenu = () => {
     return
   }
   return (
-    <div className="flex flex-col bg-slate-200 h-52 z-0 relative">
+    <header className="flex flex-col bg-slate-200 h-52 z-0 relative">
       <div className="flex items-center w-screen justify-between p-2">
         <div className="flex flex-col gap-1 mb-6">
           <div className="flex items-center gap-1">
@@ -56,6 +56,6 @@ export const HeaderMenu = () => {
           }}
         />
       </div>
-    </div>
+    </header>
   );
 };

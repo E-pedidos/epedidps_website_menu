@@ -9,7 +9,6 @@ export const useMenuFilial = () => {
   const [avatarUrl, setAvatarUrl] = useState<string>("")
   const [isLoading, setIsLoading] = useState(false)
 
-
   const getDataFilial = async (id: string) => {
     try {
       setIsLoading(true)
@@ -59,6 +58,7 @@ export const useMenuFilial = () => {
     foodCategorys,
     avatarUrl,
     itemsTrending,
-    nameFilial
+    nameFilial,
+    isLoading
   }
 }
