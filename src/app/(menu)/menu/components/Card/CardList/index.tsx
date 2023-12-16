@@ -21,12 +21,13 @@ export const CardList = ({
 }: CardProps) => {
   const { addItemOrder, removeQuantifyOrder } = useMenuContext();
   const [count, setCount] = useState<number>(0);
-  const [quantifyItem, setQuantifyItem] = useState<number>(0)
+  const [quantifyItem, setQuantifyItem] = useState<number>(1)
 
 
   const handleAdd = () => {
     setCount((prev) => prev + 1);
-    addItemOrder({id, nameItemOrder: name, quantityItemOrder: count, valueItemOrder: Number(valor)});
+    setQuantifyItem(count + quantifyItem)
+    addItemOrder({id, nameItemOrder: name, quantityItemOrder: quantifyItem, valueItemOrder: Number(valor)});
   };
 
   const handleLess = () => {
