@@ -1,8 +1,11 @@
 "use client";
+
+import { useMenuContext } from "@/store/context/menuStore";
 import Image from "next/image";
 import { useState } from "react";
 
 export type CardProps = {
+  id: string;
   name: string;
   description: string;
   photo_url: string;
@@ -10,20 +13,26 @@ export type CardProps = {
 };
 
 export const CardList = ({
+  id,
   name,
   description,
   photo_url,
   valor,
 }: CardProps) => {
+  const { addItemOrder, removeQuantifyOrder } = useMenuContext();
   const [count, setCount] = useState<number>(0);
+  const [quantifyItem, setQuantifyItem] = useState<number>(0)
+
 
   const handleAdd = () => {
     setCount((prev) => prev + 1);
+    addItemOrder({id, nameItemOrder: name, quantityItemOrder: count, valueItemOrder: Number(valor)});
   };
 
   const handleLess = () => {
     if (count > 0) {
       setCount((prev) => prev - 1);
+      removeQuantifyOrder(id)
     }
   };
 

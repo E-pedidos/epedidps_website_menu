@@ -1,5 +1,5 @@
 'use client'
-import { useResetPasswoord } from "@/hook/useResetPassword";
+import { useResetPasswoord } from "@/store/hook/useResetPassword";
 import { useParams } from "next/navigation";
 
 export default function VerifyAccountId() {

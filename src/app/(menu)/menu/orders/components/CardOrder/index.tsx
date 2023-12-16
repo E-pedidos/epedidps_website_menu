@@ -4,8 +4,10 @@ import { ICardOrder } from "@/types"
 export const CardOrders = ({nameItemOrder, quantityItemOrder, valueItemOrder}: ICardOrder) => {
     let value;
 
-    if(quantityItemOrder && valueItemOrder){
+    if(quantityItemOrder && valueItemOrder && quantityItemOrder > 1){
         value = (quantityItemOrder * valueItemOrder).toFixed(2);
+    } else {
+        value = valueItemOrder;
     }
 
     return (

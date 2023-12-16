@@ -1,6 +1,12 @@
 "use client";
 import { ICardOrder } from "@/types";
-import { ReactNode, createContext, useContext, useEffect, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 interface IMenuProps {
   children: ReactNode;
@@ -10,6 +16,7 @@ interface IMenuContext {
   listItems: ICardOrder[];
   addItemOrder(item: ICardOrder): void;
   removeItemOrder(id: string): void;
+  removeQuantifyOrder(id: string): void;
   totalOrder: number;
 }
 
@@ -33,7 +40,22 @@ export function MenuProvider({ children }: IMenuProps) {
         )
       );
     }
+
     return setListItems((prevItems) => [...prevItems, item]);
+  };
+
+  const removeQuantifyOrder = (id: string) => {
+    const isItem = listItems.find((itemExisting) => itemExisting.id === id);
+
+    if (isItem) {
+      return setListItems((prevItems) =>
+        prevItems.map((prevItem) =>
+          prevItem.id === id
+            ? { ...prevItem, quantityItemOrder: prevItem.quantityItemOrder - 1 }
+            : prevItem
+        )
+      );
+    }
   };
 
   const removeItemOrder = (id: string) => {
@@ -43,14 +65,19 @@ export function MenuProvider({ children }: IMenuProps) {
   };
 
   useEffect(() => {
-    let value = 0;
+    let total = 0;
+
     if (listItems.length > 0) {
-      const res = listItems.reduce(
-        (acumulador, currentValue) => acumulador + currentValue.valueItemOrder,
-        value
-      );
-      setTotalOrder(res);
+      const res = listItems.reduce((accumulator, currentItem) => {
+        const itemTotal =
+          currentItem.valueItemOrder * currentItem.quantityItemOrder;
+        return accumulator + itemTotal;
+      }, 0);
+
+      total = res;
     }
+
+    setTotalOrder(total);
   }, [listItems]);
 
   return (
@@ -60,6 +87,7 @@ export function MenuProvider({ children }: IMenuProps) {
         addItemOrder,
         removeItemOrder,
         totalOrder,
+        removeQuantifyOrder,
       }}
     >
       {children}
@@ -67,4 +95,4 @@ export function MenuProvider({ children }: IMenuProps) {
   );
 }
 
-export const useMenuContext = ()=> useContext(MenuContext)
+export const useMenuContext = () => useContext(MenuContext);

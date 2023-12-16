@@ -1,6 +1,6 @@
 "use client";
 import { Spiner } from "@/app/components/Loading";
-import { useMenuFilial } from "@/hook/useMenuFilial";
+import { useMenuFilial } from "@/store/hook/useMenuFilial";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { Avatar } from "../components/Avatar";

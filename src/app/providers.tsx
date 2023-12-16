@@ -1,5 +1,6 @@
 'use client'
-import { MenuProvider } from "@/store/menuStore";
+
+import { MenuProvider } from "@/store/context/menuStore";
 import { ReactNode } from "react";
 
 interface ProviderProps{

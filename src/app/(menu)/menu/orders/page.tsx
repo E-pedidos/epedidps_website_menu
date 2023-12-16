@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FormsOrder } from "./components/Form";
 import { ListItems } from "./components/ListItem";
+import { TotalOrder } from "./components/TotalValue";
 
 export default function OrdersPage() {
     
@@ -22,7 +23,7 @@ export default function OrdersPage() {
                 </div>
                 <div className="flex items-center gap-3 m-2 justify-center">
                     <h3 className="font-medium">Total:</h3>
-                    <p>R$ 68,25</p>
+                    <TotalOrder />
                 </div>
                 <div className="h-80 border flex-col border-blue-500 rounded-lg p-2 overflow-auto mb-1">
                     <ListItems />

@@ -1,5 +1,5 @@
 "use client";
-import { useVerifyAccount } from "@/hook/useVerifyAccount";
+import { useVerifyAccount } from "@/store/hook/useVerifyAccount";
 import { useParams } from "next/navigation";
 
 export default function VerifyAccountId() {

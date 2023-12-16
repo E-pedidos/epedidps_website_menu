@@ -1,10 +1,25 @@
 "use client";
 
-import { useMenuContext } from "@/store/menuStore";
 
-export const ListItems = async () => {
+import { useMenuContext } from "@/store/context/menuStore";
+import { CardOrders } from "../CardOrder";
+
+export const ListItems = () => {
   const { listItems } = useMenuContext();
   return (
-    <>{listItems.length > 0 ? listItems.map((item) => "1") : "Não há items"}</>
+    <>{
+      listItems.length > 0 ? 
+      listItems.map((item)=>{
+        return (
+          <CardOrders 
+            key={item.id}
+            id={item.id}
+            nameItemOrder={item.nameItemOrder}
+            quantityItemOrder={item.quantityItemOrder}
+            valueItemOrder={item.valueItemOrder}
+          />
+        )
+      }) 
+      : "Não há items"}</>
   );
 };
