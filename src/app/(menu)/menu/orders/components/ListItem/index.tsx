@@ -3,9 +3,19 @@
 
 import { useMenuContext } from "@/store/context/menuStore";
 import { CardOrders } from "../CardOrder";
+import { useEffect } from "react";
 
 export const ListItems = () => {
-  const { listItems } = useMenuContext();
+  const { listItems, removeItemOrder } = useMenuContext();
+
+  useEffect(()=>{
+    if(listItems.length > 0){
+      const item = listItems.find(i => i.quantityItemOrder === 0)
+      if (item && item.quantityItemOrder !== undefined) {
+        removeItemOrder(item!.id)
+      }
+    }
+  },[listItems])
   return (
     <>{
       listItems.length > 0 ? 

@@ -2,7 +2,7 @@
 
 import { useMenuContext } from "@/store/context/menuStore";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export type CardProps = {
   id: string;
@@ -19,10 +19,9 @@ export const CardList = ({
   photo_url,
   valor,
 }: CardProps) => {
-  const { addItemOrder, removeQuantifyOrder } = useMenuContext();
+  const { addItemOrder, removeQuantifyOrder, listItems, removeItemOrder } = useMenuContext();
   const [count, setCount] = useState<number>(0);
   const [quantifyItem, setQuantifyItem] = useState<number>(1)
-
 
   const handleAdd = () => {
     setCount((prev) => prev + 1);
@@ -33,9 +32,18 @@ export const CardList = ({
   const handleLess = () => {
     if (count > 0) {
       setCount((prev) => prev - 1);
-      removeQuantifyOrder(id)
+     return removeQuantifyOrder(id)
     }
   };
+
+  useEffect(()=>{
+    if(listItems.length > 0){
+      const isItem = listItems.find(item => item.id === id)
+      if (isItem && isItem.quantityItemOrder !== undefined) {
+        setCount(isItem.quantityItemOrder);
+      }
+    }
+  },[ listItems])
 
   return (
     <div className="flex-col bg-white px-7 py-3 items-center justify-between gap-4 custom-border w-screen">
