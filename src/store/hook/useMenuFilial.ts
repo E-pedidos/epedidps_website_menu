@@ -33,8 +33,9 @@ export const useMenuFilial = () => {
         ],
       }
 
-      const { data } = await api.get(
+      const { data } = await api.post(
         `/filials/getFilialByQrCode/${id}`,
+        {"sendKey": process.env.NEXT_PUBLIC_KEY_REQ_FILIAL},
         config
       )
 
