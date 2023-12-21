@@ -9,6 +9,7 @@ import { CardList } from "../components/Card/CardList";
 import { Emphasis } from "../components/Emphasis";
 import { Information } from "../components/Information";
 import { Menu } from "../components/Menu";
+import { getItem, setItem } from "@/store/utils/localStorageUtils";
 export default function MenuFilial() {
   const { id } = useParams();
   const {
@@ -22,7 +23,11 @@ export default function MenuFilial() {
 
   useEffect(() => {
     const idFilial = id.toString();
+    const idFilialLocalStorage = getItem('idFilial')
+    
     getDataFilial(idFilial);
+    
+    if(!idFilialLocalStorage) return setItem('idFilial', idFilial)
   }, []);
 
   return (
