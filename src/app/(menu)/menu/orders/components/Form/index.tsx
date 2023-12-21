@@ -57,17 +57,6 @@ export const FormsOrder = () => {
   const closeModalOrder = () => {
     setIsModalOpenOrder(false);
   };
-  const getOrder = async () => {
-    try {
-      const idFilial = getItem("idFilial");
-
-      const res = await api.get('/orders', { params: { 'filialId': idFilial } });
-
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handleSelecaoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { id, checked } = event.target;
@@ -109,10 +98,6 @@ export const FormsOrder = () => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    getOrder();
-  }, []);
 
   if (!isForm) {
     return (
