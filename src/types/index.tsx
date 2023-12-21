@@ -51,17 +51,25 @@ export interface IMenu {
   children: ReactNode;
 }
 
-export interface ModalProps {
-  title: string;
-  isOpen: boolean;
-  onClose: () => void;
-  children: ReactNode;
-}
-
 export interface ICardOrder {
   id: string
   nameItemOrder: string
   valueItemOrder: number
   quantityItemOrder: number
 }
- 
+
+export interface Item {
+  name: string
+  valor: number
+  quantity: number
+}
+
+export interface IOrder {
+  client_name: string
+  table_number: number
+  observation: string
+  actual_status: string
+  total_valor: number
+  filialId: string
+  items: Item[]
+}
