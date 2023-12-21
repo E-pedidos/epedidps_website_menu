@@ -66,7 +66,7 @@ export interface Item {
 
 export interface IOrder {
   client_name: string
-  table_number: number
+  table_number: string
   observation: string
   actual_status: string
   total_valor: number
