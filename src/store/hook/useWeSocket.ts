@@ -18,6 +18,10 @@ export const useWebSocket = () => {
     }
   }
 
+  const disconnectWebSocket = () =>{
+    return socket!.disconnect();
+  }
+
   const filialConnectWebSocket = (filial: string) => {
     try {    
       socket!.emit("enter-filial", filial, (message: any) => {
@@ -42,6 +46,7 @@ export const useWebSocket = () => {
     socket,
     filialConnectWebSocket,
     createOrderWebSocket,
-    connectWebSocket
+    connectWebSocket,
+    disconnectWebSocket
   };
 };

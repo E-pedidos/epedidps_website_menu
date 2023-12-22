@@ -25,6 +25,7 @@ export const useFormOrder = () => {
     createOrderWebSocket,
     socket,
     connectWebSocket,
+    disconnectWebSocket
   } = useWebSocket();
 
   const openModalBartender = () => {
@@ -42,20 +43,20 @@ export const useFormOrder = () => {
 
   const openModalOrder = () => {
     setIsModalOpenOrder(true);
+    connectWebSocket();
   };
 
   const closeModalOrder = () => {
     setIsModalOpenOrder(false);
-    connectWebSocket();
   };
-
+  
   const handleSubmitOrder = (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const idFilial = getItem("idFilial");
-
+      
       filialConnectWebSocket(idFilial!);
-
+      
       const objFormOrder: IOrder = {
         ...formOrder,
         filialId: idFilial!,
@@ -69,12 +70,14 @@ export const useFormOrder = () => {
           })),
         ],
       };
-
+      
       createOrderWebSocket(objFormOrder, idFilial!);
 
       socket!.on("new-order-added", (order) => {
-        console.log("pedido do socket");
-        console.log(order);
+        if(order){
+          disconnectWebSocket();
+          console.log('desconectado')
+        }
       });
       closeModalOrder();
     } catch (error) {
