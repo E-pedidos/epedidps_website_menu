@@ -4,34 +4,28 @@ import { getItem } from "@/store/utils/localStorageUtils";
 import { IOrder } from "@/types";
 import { useState } from "react";
 
-interface ISelecoes {
-  dinheiro: boolean;
-  cartao: boolean;
-  pix: boolean;
-}
-
 interface IFormOrder {
   client_name: string;
   observation: string;
   table_number: number;
 }
 
-export const useForm = () => {
+export const useFormOrder = () => {
   const [isForm, setIsForm] = useState(false);
   const [isModalOpenBartender, setIsModalOpenBartender] = useState(false);
   const [isModalOpenOrder, setIsModalOpenOrder] = useState(false);
-  const [selecoes, setSelecoes] = useState<ISelecoes>({
-    dinheiro: false,
-    cartao: false,
-    pix: false,
-  });
   const [formOrder, setFormOrder] = useState<IFormOrder>({
     client_name: "",
     observation: "",
     table_number: 0,
   });
   const { listItems, totalOrder } = useMenuContext();
-  const { filialConnectWebSocket, createOrderWebSocket, socket } = useWebSocket();
+  const {
+    filialConnectWebSocket,
+    createOrderWebSocket,
+    socket,
+    connectWebSocket,
+  } = useWebSocket();
 
   const openModalBartender = () => {
     setIsModalOpenBartender(true);
@@ -52,14 +46,7 @@ export const useForm = () => {
 
   const closeModalOrder = () => {
     setIsModalOpenOrder(false);
-  };
-
-  const handleSelecaoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, checked } = event.target;
-    setSelecoes((prevState) => ({
-      ...prevState,
-      [id]: checked,
-    }));
+    connectWebSocket();
   };
 
   const handleSubmitOrder = (e: React.FormEvent) => {
@@ -99,8 +86,6 @@ export const useForm = () => {
     isForm,
     isModalOpenBartender,
     isModalOpenOrder,
-    selecoes,
-    setSelecoes,
     formOrder,
     setFormOrder,
     openModalBartender,
@@ -108,7 +93,6 @@ export const useForm = () => {
     closeModalBartender,
     closeModalOrder,
     handleForm,
-    handleSelecaoChange,
-    handleSubmitOrder
-  }
+    handleSubmitOrder,
+  };
 };

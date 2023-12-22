@@ -1,7 +1,8 @@
 import Image from "next/image";
-import { FormsOrder } from "./components/Form";
 import { ListItems } from "./components/ListItem";
 import { TotalOrder } from "./components/TotalValue";
+import { FormsSendOrder } from "./components/Forms/FormsSendOrder";
+import { FormCloseOrder } from "./components/Forms/FormCloseOrder";
 
 export default function OrdersPage() {
     
@@ -28,7 +29,8 @@ export default function OrdersPage() {
                 <div className="h-80 border flex-col border-blue-500 rounded-lg p-2 overflow-auto mb-1">
                     <ListItems />
                 </div>
-                <FormsOrder />
+               <FormsSendOrder />
+               <FormCloseOrder />
             </section>
         </main>
     )
