@@ -96,7 +96,6 @@ export function MenuProvider({ children }: IMenuProps) {
     setTotalOrder(total);
   }, [listItems]);
 
- 
   const getDataFilial = async () => {
     try {
       setIsLoading(true)
