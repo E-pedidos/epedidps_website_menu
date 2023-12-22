@@ -1,6 +1,7 @@
 "use client";
 import { Spiner } from "@/app/components/Loading";
-import { useMenuFilial } from "@/store/hook/useMenuFilialRepository";
+import { useMenuContext } from "@/store/context/menuStore";
+import { getItem, setItem } from "@/store/utils/localStorageUtils";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { Avatar } from "../components/Avatar";
@@ -9,25 +10,15 @@ import { CardList } from "../components/Card/CardList";
 import { Emphasis } from "../components/Emphasis";
 import { Information } from "../components/Information";
 import { Menu } from "../components/Menu";
-import { getItem, setItem } from "@/store/utils/localStorageUtils";
 export default function MenuFilial() {
   const { id } = useParams();
-  const {
-    getDataFilial,
-    foodCategorys,
-    itemsTrending,
-    nameFilial,
-    avatarUrl,
-    isLoading,
-  } = useMenuFilial();
+  const {isLoading, avatarUrl, itemsTrending, foodCategorys, nameFilial} = useMenuContext()
 
   useEffect(() => {
     const idFilial = id.toString();
     const idFilialLocalStorage = getItem('idFilial')
     
-    getDataFilial(idFilial);
-    
-    if(!idFilialLocalStorage) return setItem('idFilial', idFilial)
+    if(!idFilialLocalStorage || idFilialLocalStorage != idFilial) return setItem('idFilial', idFilial)
   }, []);
 
   return (
