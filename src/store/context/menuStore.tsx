@@ -18,6 +18,8 @@ interface IMenuContext {
   removeItemOrder(id: string): void;
   removeQuantifyOrder(id: string): void;
   totalOrder: number;
+  isformsOrderContext: boolean
+  setIsformsOrderContext(isformsOrderContext: boolean): void
 }
 
 export const MenuContext = createContext<IMenuContext>({} as IMenuContext);
@@ -25,6 +27,7 @@ export const MenuContext = createContext<IMenuContext>({} as IMenuContext);
 export function MenuProvider({ children }: IMenuProps) {
   const [listItems, setListItems] = useState<ICardOrder[]>([]);
   const [totalOrder, setTotalOrder] = useState<number>(0);
+  const [isformsOrderContext, setIsformsOrderContext] = useState(false)
 
   const addItemOrder = (item: ICardOrder) => {
     const isItem = listItems.find(
@@ -88,6 +91,8 @@ export function MenuProvider({ children }: IMenuProps) {
         removeItemOrder,
         totalOrder,
         removeQuantifyOrder,
+        isformsOrderContext,
+        setIsformsOrderContext
       }}
     >
       {children}

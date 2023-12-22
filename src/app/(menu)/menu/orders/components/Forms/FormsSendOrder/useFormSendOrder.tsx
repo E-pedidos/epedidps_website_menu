@@ -19,7 +19,7 @@ export const useFormOrder = () => {
     observation: "",
     table_number: 0,
   });
-  const { listItems, totalOrder } = useMenuContext();
+  const { listItems, totalOrder, setIsformsOrderContext, isformsOrderContext } = useMenuContext();
   const {
     filialConnectWebSocket,
     createOrderWebSocket,
@@ -28,17 +28,17 @@ export const useFormOrder = () => {
     disconnectWebSocket
   } = useWebSocket();
 
-  const openModalBartender = () => {
+  const openModalCloseOrder = () => {
     setIsModalOpenBartender(true);
   };
 
-  const closeModalBartender = () => {
+  const closeModalCloseOrder = () => {
     setIsModalOpenBartender(false);
   };
 
   const handleForm = () => {
     setIsModalOpenBartender(false);
-    setIsForm(true);
+    setIsformsOrderContext(!isformsOrderContext);
   };
 
   const openModalOrder = () => {
@@ -91,9 +91,9 @@ export const useFormOrder = () => {
     isModalOpenOrder,
     formOrder,
     setFormOrder,
-    openModalBartender,
+    openModalCloseOrder,
     openModalOrder,
-    closeModalBartender,
+    closeModalCloseOrder,
     closeModalOrder,
     handleForm,
     handleSubmitOrder,

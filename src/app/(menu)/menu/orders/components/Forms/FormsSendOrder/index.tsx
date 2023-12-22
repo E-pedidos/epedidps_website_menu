@@ -1,23 +1,24 @@
 "use client";
 import { Modal } from "@/app/components/Modal";
 import { useFormOrder } from "./useFormSendOrder";
+import { useMenuContext } from "@/store/context/menuStore";
 
 export const FormsSendOrder = () => {
   const {
-    isForm,
-    closeModalBartender,
+    closeModalCloseOrder,
     closeModalOrder,
     formOrder,
     handleForm,
     handleSubmitOrder,
     isModalOpenBartender,
     isModalOpenOrder,
-    openModalBartender,
+    openModalCloseOrder,
     openModalOrder,
     setFormOrder,
   } = useFormOrder();
+  const {isformsOrderContext} = useMenuContext()
 
-  if (!isForm) {
+  if (!isformsOrderContext) {
     return (
       <div className="flex-col mb-9 pl-3">
         <Modal
@@ -76,18 +77,18 @@ export const FormsSendOrder = () => {
         <div className="flex w-full justify-center">
           <button
             className="bg-red-500 p-2 rounded-2xl text-white font-medium my-2"
-            onClick={openModalBartender}
+            onClick={openModalCloseOrder}
           >
             Garçom, quero encerrar
           </button>
         </div>
         <Modal
           isOpen={isModalOpenBartender}
-          onClose={closeModalBartender}
+          onClose={closeModalCloseOrder}
           title="Tem certeza que deseja encerrar?"
         >
           <button
-            onClick={closeModalBartender}
+            onClick={closeModalCloseOrder}
             className="mt-4 bg-red-500 text-white p-2 rounded"
           >
             Não
