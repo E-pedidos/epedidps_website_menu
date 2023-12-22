@@ -101,41 +101,19 @@ export function MenuProvider({ children }: IMenuProps) {
     try {
       setIsLoading(true)
       const idFilialLocalStorage = getItem('idFilial')
-      const config = {
-        transformResponse: [
-          function (data: any) {
-            const dataResponse = JSON.parse(data)
-            
-            const payload = {
-              foodCategorys: dataResponse.filial.foodCategorys,
-              avatarUrl: dataResponse.filial.franchise.user.avatar_url,
-              name: dataResponse.filial.name
-            }
-
-            const itemsIsTrending = dataResponse.itemsTrending
-
-            return {
-              payload,
-              itemsIsTrending,
-            }
-          },
-        ],
-      }
 
       const { data } = await api.post(
         `/filials/getFilialByQrCode/${idFilialLocalStorage}`,
         {"sendKey": process.env.NEXT_PUBLIC_KEY_REQ_FILIAL},
-        config
       )
-
-      const foodCategorysResponse: IFoodCategory[] = data.payload.foodCategorys
-      const isTrendingResponse: ICard[] = data.itemsIsTrending
-
-      setFoodCategorys(foodCategorysResponse)
-      setAvatarUrl(data.payload.avatarUrl)
-      setNameFilial(data.payload.name)
-      setItemsTrending(isTrendingResponse)
-      setIsLoading(false)
+ 
+      if(data){
+        setFoodCategorys(data.filial.foodCategory as IFoodCategory[])
+        setAvatarUrl(data.filial.avatar_url)
+        setNameFilial(data.filial.name)
+        setItemsTrending(data.itemsTrending as ICard[])
+        setIsLoading(false)
+      }
     } catch (error) {
       console.error(error)
     }finally {

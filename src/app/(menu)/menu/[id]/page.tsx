@@ -39,7 +39,7 @@ export default function MenuFilial() {
             return <CardEmphasis key={item.id} {...item} />
           })}
         </Emphasis>
-        {foodCategorys.map((item) => {
+        {foodCategorys?.map((item) => {
           return item.items.length > 0 ? (
             <Menu key={item.name} title={item.name}>
               {item.items.map((foodItem) => {
