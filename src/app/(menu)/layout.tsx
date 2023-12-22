@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "./menu/components/Footer";
 import { HeaderMenu } from "./menu/components/HaederMenu";
+import ProvidersMenu from "./providers";
 
 export const metadata: Metadata = {
   title: "E-pedidos Cardapio",
@@ -12,7 +13,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <HeaderMenu />
-      {children}
+      <ProvidersMenu>{children}</ProvidersMenu>
       <Footer />
     </>
   );
