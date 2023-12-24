@@ -8,7 +8,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { getItem } from "../utils/localStorageUtils";
+import { getItem, getItemObject } from "../utils/localStorageUtils";
 
 interface IMenuProps {
   children: ReactNode;
@@ -40,6 +40,11 @@ export function MenuProvider({ children }: IMenuProps) {
   const [nameFilial, setNameFilial] = useState<string>("")
   const [avatarUrl, setAvatarUrl] = useState<string>("")
   const [isLoading, setIsLoading] = useState(false)
+
+  const loadItemsFromLocalStorage = ()=>{
+    const localListItems = getItemObject("listOrders");
+    return localListItems ? setListItems(localListItems) : null
+  }
   
 
   const addItemOrder = (item: ICardOrder) => {
@@ -121,6 +126,7 @@ export function MenuProvider({ children }: IMenuProps) {
   }
 
   useEffect(()=>{
+    loadItemsFromLocalStorage()
       getDataFilial()
   }, [])
 

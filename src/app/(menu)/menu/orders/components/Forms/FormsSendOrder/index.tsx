@@ -76,7 +76,7 @@ export const FormsSendOrder = () => {
             </button>
           </form>
         </Modal>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col items-center gap-2">
           <h3>
             {isOrder
               ? "Se você adicionou mais itens, clique em Enviar"
@@ -91,12 +91,15 @@ export const FormsSendOrder = () => {
         </div>
         <div className="flex w-full justify-center">
           {isOrder && (
-            <button
-              className="bg-red-500 p-2 rounded-2xl text-white font-medium my-2"
-              onClick={openModalCloseOrder}
-            >
-              Garçom, quero encerrar
-            </button>
+            <div className="flex flex-col items-center gap-2">
+              <h3>Ou encerrar sua conta</h3>
+              <button
+                className="bg-red-500 p-2 rounded-2xl text-white font-medium my-2"
+                onClick={openModalCloseOrder}
+              >
+                Garçom, quero encerrar
+              </button>
+            </div>
           )}
         </div>
         <Modal

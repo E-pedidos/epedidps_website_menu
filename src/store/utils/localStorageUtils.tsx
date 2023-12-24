@@ -13,7 +13,7 @@ export const setItemObject = (key: string, item: object) => {
 
 export const getItemObject = (key: string) => {
     const jsonItem = localStorage.getItem(key)
-    return JSON.parse(jsonItem!)
+    return jsonItem ? JSON.parse(jsonItem) : undefined
 }
 
 export const remove = (key: string) => {

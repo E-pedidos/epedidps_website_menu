@@ -20,6 +20,7 @@ export const useFormOrder = () => {
     table_number: 0,
   });
   const { listItems, totalOrder, setIsformsOrderContext, isformsOrderContext } = useMenuContext();
+  
   const {
     filialConnectWebSocket,
     createOrderWebSocket,
@@ -76,7 +77,7 @@ export const useFormOrder = () => {
       socket!.on("new-order-added", (order: IOrder) => {
         if(order){
           setItem('idOrder', order.id!)
-          setItemObject('listOrders', order.items)
+          setItemObject('listOrders', listItems)
 
           disconnectWebSocket();
           closeModalOrder();

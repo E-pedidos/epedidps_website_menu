@@ -28,6 +28,6 @@ export const ListItems = () => {
           />
         )
       }) 
-      : "Não há itens"}</>
+      : "Não há items"}</>
   );
 };
