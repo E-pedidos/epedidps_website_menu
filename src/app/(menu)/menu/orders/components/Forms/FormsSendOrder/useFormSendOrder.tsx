@@ -1,6 +1,6 @@
 import { useMenuContext } from "@/store/context/menuStore";
 import { useWebSocket } from "@/store/hook/useWeSocket";
-import { getItem } from "@/store/utils/localStorageUtils";
+import { getItem, setItem, setItemObject } from "@/store/utils/localStorageUtils";
 import { IOrder } from "@/types";
 import { useState } from "react";
 
@@ -73,10 +73,12 @@ export const useFormOrder = () => {
       
       createOrderWebSocket(objFormOrder, idFilial!);
 
-      socket!.on("new-order-added", (order) => {
+      socket!.on("new-order-added", (order: IOrder) => {
         if(order){
+          setItem('idOrder', order.id!)
+          setItemObject('listOrders', order)
+
           disconnectWebSocket();
-          console.log('desconectado')
           closeModalOrder();
         }
       });

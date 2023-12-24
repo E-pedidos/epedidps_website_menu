@@ -71,5 +71,6 @@ export interface IOrder {
   actual_status: string
   total_valor: number
   filialId: string
+  id?: string
   items: Item[]
 }
