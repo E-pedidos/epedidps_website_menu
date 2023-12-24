@@ -1,5 +1,5 @@
 import { IOrder } from "@/types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Socket, io } from "socket.io-client";
 
 export const useWebSocket = () => {

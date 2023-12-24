@@ -77,9 +77,9 @@ export const useFormOrder = () => {
         if(order){
           disconnectWebSocket();
           console.log('desconectado')
+          closeModalOrder();
         }
       });
-      closeModalOrder();
     } catch (error) {
       console.log(error);
     }
