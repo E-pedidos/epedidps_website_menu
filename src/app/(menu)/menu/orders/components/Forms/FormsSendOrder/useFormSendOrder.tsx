@@ -76,7 +76,7 @@ export const useFormOrder = () => {
       socket!.on("new-order-added", (order: IOrder) => {
         if(order){
           setItem('idOrder', order.id!)
-          setItemObject('listOrders', order)
+          setItemObject('listOrders', order.items)
 
           disconnectWebSocket();
           closeModalOrder();

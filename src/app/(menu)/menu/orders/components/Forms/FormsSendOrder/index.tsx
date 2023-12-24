@@ -1,12 +1,12 @@
 "use client";
 import { Modal } from "@/app/components/Modal";
-import { useFormOrder } from "./useFormSendOrder";
 import { useMenuContext } from "@/store/context/menuStore";
-import { getItemObject } from "@/store/utils/localStorageUtils";
+import { getItem } from "@/store/utils/localStorageUtils";
 import { useEffect, useState } from "react";
+import { useFormOrder } from "./useFormSendOrder";
 
 export const FormsSendOrder = () => {
-  const [isList, setIsList] = useState<boolean>(false);
+  const [isOrder, setIsOrder] = useState<boolean>(false);
   const {
     closeModalCloseOrder,
     closeModalOrder,
@@ -22,10 +22,10 @@ export const FormsSendOrder = () => {
   const { isformsOrderContext } = useMenuContext();
 
   useEffect(() => {
-    const list = getItemObject("listOrders");
+    const list = getItem("idOrder");
 
     if (list) {
-      setIsList(true);
+      setIsOrder(true);
     }
   }, []);
 
@@ -78,7 +78,7 @@ export const FormsSendOrder = () => {
         </Modal>
         <div className="flex items-center gap-4">
           <h3>
-            {isList
+            {isOrder
               ? "Se você adicionou mais itens, clique em Enviar"
               : "Deseja enviar seu pedido?"}
           </h3>
@@ -90,7 +90,7 @@ export const FormsSendOrder = () => {
           </button>
         </div>
         <div className="flex w-full justify-center">
-          {isList && (
+          {isOrder && (
             <button
               className="bg-red-500 p-2 rounded-2xl text-white font-medium my-2"
               onClick={openModalCloseOrder}

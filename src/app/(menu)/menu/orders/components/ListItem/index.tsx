@@ -1,6 +1,4 @@
 "use client";
-
-
 import { useMenuContext } from "@/store/context/menuStore";
 import { CardOrders } from "../CardOrder";
 import { useEffect } from "react";
@@ -30,6 +28,6 @@ export const ListItems = () => {
           />
         )
       }) 
-      : "Não há items"}</>
+      : "Não há itens"}</>
   );
 };
