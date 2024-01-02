@@ -1,4 +1,3 @@
-import { Avatar } from "../Avatar";
 
 export const Information = ({ children }: { children: React.ReactNode }) => {
   return (
