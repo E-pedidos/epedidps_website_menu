@@ -48,9 +48,9 @@ export const CardList = ({
   return (
     <div className="flex-col bg-white px-7 py-3 items-center justify-between gap-4 custom-border w-screen">
       <div className="flex items-center">
-        <div className=" w-full">
+        <div className="flex flex-col gap-2 w-full">
           <h2 className="text-xs font-semibold">{name}</h2>
-          <p className="text-xs">{description}</p>
+          <p className="text-xs text-ellipsis">{description}</p>
         </div>
         <Image
           width={0}
@@ -62,8 +62,9 @@ export const CardList = ({
           style={{
             height: "auto",
             width: "auto",
-            maxHeight: "28%",
-            maxWidth: "28%",
+            maxHeight: "5rem",
+            maxWidth: "5rem",
+            objectFit: 'cover'
           }}
         />
       </div>
