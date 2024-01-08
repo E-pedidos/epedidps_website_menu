@@ -1,12 +1,10 @@
 "use client";
 import { Modal } from "@/app/components/Modal";
 import { useMenuContext } from "@/store/context/menuStore";
-import { getItem } from "@/store/utils/localStorageUtils";
-import { useEffect, useState } from "react";
+import { IOrder } from "@/types";
 import { useFormOrder } from "./useFormSendOrder";
 
 export const FormsSendOrder = () => {
-  const [isOrder, setIsOrder] = useState<boolean>(false);
   const {
     closeModalCloseOrder,
     closeModalOrder,
@@ -18,16 +16,10 @@ export const FormsSendOrder = () => {
     openModalCloseOrder,
     openModalOrder,
     setFormOrder,
+    isOrder,
+    handleUpdateOrder,
   } = useFormOrder();
   const { isformsOrderContext } = useMenuContext();
-
-  useEffect(() => {
-    const list = getItem("idOrder");
-
-    if (list) {
-      setIsOrder(true);
-    }
-  }, []);
 
   if (!isformsOrderContext) {
     return (
@@ -37,28 +29,35 @@ export const FormsSendOrder = () => {
           isOpen={isModalOpenOrder}
           onClose={closeModalOrder}
         >
-          <form className="flex flex-col gap-2" onSubmit={handleSubmitOrder}>
-            <label>Seu Nome</label>
-            <input
-              className=" border-blue-500 border rounded-lg mt-2 p-1"
-              placeholder="Nome"
-              value={formOrder.client_name}
-              onChange={(e) =>
-                setFormOrder({ ...formOrder, client_name: e.target.value })
-              }
-            />
-            <label>Sua mesa possui idêntificação?</label>
-            <input
-              className=" border-blue-500 border rounded-lg mt-2 p-1"
-              placeholder="Ex: 1"
-              value={formOrder.table_number}
-              onChange={(e) =>
-                setFormOrder({
-                  ...formOrder,
-                  table_number: Number(e.target.value),
-                })
-              }
-            />
+          <form
+            className="flex flex-col gap-2"
+            onSubmit={isOrder ? handleUpdateOrder : handleSubmitOrder}
+          >
+            {!isOrder && (
+              <>
+                <label>Seu Nome</label>
+                <input
+                  className=" border-blue-500 border rounded-lg mt-2 p-1"
+                  placeholder="Nome"
+                  value={formOrder.client_name}
+                  onChange={(e) =>
+                    setFormOrder({ ...formOrder, client_name: e.target.value })
+                  }
+                />
+                <label>Sua mesa possui idêntificação?</label>
+                <input
+                  type="number"
+                  className=" border-blue-500 border rounded-lg mt-2 p-1"
+                  placeholder="Ex: 1"
+                  onChange={(e) =>
+                    setFormOrder({
+                      ...formOrder,
+                      table_number: Number(e.target.value),
+                    })
+                  }
+                />
+              </>
+            )}
             <h3>tem alguma observação?</h3>
             <input
               className=" border-blue-500 border rounded-lg mt-2 p-1"
@@ -69,7 +68,7 @@ export const FormsSendOrder = () => {
               }
             />
             <button
-              className="mt-4 bg-green-500 text-white p-2 rounded ml-6"
+              className="mt-4 bg-green-500 text-white p-2 rounded"
               type="submit"
             >
               Enviar
@@ -77,29 +76,38 @@ export const FormsSendOrder = () => {
           </form>
         </Modal>
         <div className="flex flex-col items-center gap-2">
-          <h3>
-            {isOrder
-              ? "Se você adicionou mais itens, clique em Enviar"
-              : "Deseja enviar seu pedido?"}
-          </h3>
-          <button
-            className="bg-blue-500 p-1 rounded-2xl text-white font-medium my-2"
-            onClick={openModalOrder}
-          >
-            Enviar
-          </button>
-        </div>
-        <div className="flex w-full justify-center">
-          {isOrder && (
-            <div className="flex flex-col items-center gap-2">
-              <h3>Ou encerrar sua conta</h3>
+          {!isOrder && (
+            <>
+              <h3>Deseja enviar seu pedido?</h3>
               <button
-                className="bg-red-500 p-2 rounded-2xl text-white font-medium my-2"
-                onClick={openModalCloseOrder}
+                className="bg-blue-500 p-1 rounded-2xl text-white font-medium my-2"
+                onClick={openModalOrder}
               >
-                Garçom, quero encerrar
+                Enviar
               </button>
-            </div>
+            </>
+          )}
+          {isOrder && (
+            <>
+              <h3>Se você adicionou mais itens, clique em Enviar</h3>
+              <button
+                className="bg-blue-500 p-1 rounded-2xl text-white font-medium my-2"
+                onClick={openModalOrder}
+              >
+                Enviar
+              </button>
+              <div className="flex w-full justify-center">
+                <div className="flex flex-col items-center gap-2">
+                  <h3>Ou encerrar sua conta</h3>
+                  <button
+                    className="bg-red-500 p-2 rounded-2xl text-white font-medium my-2"
+                    onClick={openModalCloseOrder}
+                  >
+                    Garçom, quero encerrar
+                  </button>
+                </div>
+              </div>
+            </>
           )}
         </div>
         <Modal

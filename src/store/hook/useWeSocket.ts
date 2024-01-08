@@ -42,11 +42,24 @@ export const useWebSocket = () => {
     }
   };
 
+  const updateOrderWebSocket = (order: IOrder, filial: string, idOrder: string) => {
+    try {
+      socket!.emit('update-order', idOrder, order, filial, (myUpdatedOrder: any) => {
+        console.log("pedido atualizado")
+        console.log(myUpdatedOrder)
+    })
+      
+    } catch (error) {
+      console.error("Erro interno");
+    }
+  };
+
   return {
     socket,
     filialConnectWebSocket,
     createOrderWebSocket,
     connectWebSocket,
-    disconnectWebSocket
+    disconnectWebSocket,
+    updateOrderWebSocket
   };
 };

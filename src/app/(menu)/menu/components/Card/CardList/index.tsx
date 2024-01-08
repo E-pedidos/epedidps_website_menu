@@ -19,7 +19,7 @@ export const CardList = ({
   photo_url,
   valor,
 }: CardProps) => {
-  const { addItemOrder, removeQuantifyOrder, listItems, removeItemOrder } = useMenuContext();
+  const { addItemOrder, removeQuantifyOrder, listItems } = useMenuContext();
   const [count, setCount] = useState<number>(0);
   const [quantifyItem, setQuantifyItem] = useState<number>(1)
 
