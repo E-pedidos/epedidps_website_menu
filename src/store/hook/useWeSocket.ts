@@ -1,4 +1,4 @@
-import { IOrder } from "@/types";
+import { IOrder, IOrderUpdate } from "@/types";
 import { useState } from "react";
 import { Socket, io } from "socket.io-client";
 
@@ -34,19 +34,18 @@ export const useWebSocket = () => {
 
   const createOrderWebSocket = (order: IOrder, filial: string) => {
     try {
-      socket!.emit("create-order", order, filial, () => {
-        console.log("pedido envidado");
+      socket!.emit("create-order", order, filial, (order: any) => {
+        console.log("Pedido enviado com sucesso!", order)
       });
     } catch (error) {
       console.error("Erro interno");
     }
   };
 
-  const updateOrderWebSocket = (order: IOrder, filial: string, idOrder: string) => {
+  const updateOrderWebSocket = async (orderUpdate: IOrderUpdate, idFilial: string, idOrder: string) => {
     try {
-      socket!.emit('update-order', idOrder, order, filial, (myUpdatedOrder: any) => {
-        console.log("pedido atualizado")
-        console.log(myUpdatedOrder)
+      socket!.emit('update-order', idOrder, orderUpdate, idFilial, (updatedOrder: any) => {
+       console.log("pedido atualizado", updatedOrder)
     })
       
     } catch (error) {

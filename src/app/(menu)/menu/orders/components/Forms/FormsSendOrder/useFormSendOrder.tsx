@@ -6,7 +6,7 @@ import {
   setItem,
   setItemObject,
 } from "@/store/utils/localStorageUtils";
-import { ICardOrder, IOrder, IOrderUpdate, Item } from "@/types";
+import { ICardOrder, IOrder, IOrderUpdate } from "@/types";
 import { useEffect, useState } from "react";
 
 interface IFormOrder {
@@ -73,15 +73,17 @@ export const useFormOrder = () => {
         filialId: idFilial!,
         total_valor: Number(totalOrder),
         actual_status: "open",
-        orderItems: [
+        items: [
           ...listItems.map((item) => ({
+            id: item.id,
             name: item.nameItemOrder,
             valor: Number(item.valueItemOrder * item.quantityItemOrder),
             quantity: Number(item.quantityItemOrder),
           })),
         ],
+        updatedOrderItems: []
       };
-
+      
       createOrderWebSocket(objFormOrder, idFilial!);
 
       socket!.on("new-order-added", (order: IOrder) => {
@@ -106,21 +108,23 @@ export const useFormOrder = () => {
       const idFilial = getItem("idFilial");
       const idOrder = getItem("idOrder");
       const orderList: ICardOrder[] = getItemObject("listOrders");
-      const updatedOrderItems: [] = [];
-      /* filialConnectWebSocket(idFilial!); */
+      const newItems: [] = [];
 
-      const objFormOrder: IOrderUpdate = {
+      filialConnectWebSocket(idFilial!); 
+
+      const orderUpdate: IOrderUpdate = {
         observation: formOrder.observation ? formOrder.observation : "",
         total_valor: Number(totalOrder),
         actual_status: "newOrder",
-        orderItems: [
+        items: [
           ...listItems.map((item) => ({
+            id: item.id,
             name: item.nameItemOrder,
             valor: Number(item.valueItemOrder * item.quantityItemOrder),
             quantity: Number(item.quantityItemOrder),
           })),
         ],
-        updatedOrderItems: updatedOrderItems,
+        newItems: newItems,
       };
 
       orderList.map((orderListItem) => {
@@ -129,7 +133,8 @@ export const useFormOrder = () => {
           const quantityDifference =
             matchingItem.quantityItemOrder - orderListItem.quantityItemOrder;
           if (quantityDifference !== 0) {
-            objFormOrder.updatedOrderItems.push({
+            orderUpdate.newItems.push({
+              id: orderListItem.id,
               name: orderListItem.nameItemOrder,
               valor: matchingItem.valueItemOrder * quantityDifference,
               quantity: quantityDifference,
@@ -141,7 +146,8 @@ export const useFormOrder = () => {
       listItems.map((item) => {
         const matchingOrderItem = orderList.find(orderItem => orderItem.nameItemOrder === item.nameItemOrder);
         if (!matchingOrderItem) {
-          objFormOrder.updatedOrderItems.push({
+          orderUpdate.newItems.push({
+            id: item.id,
             name: item.nameItemOrder,
             valor: item.valueItemOrder * item.quantityItemOrder,
             quantity: item.quantityItemOrder,
@@ -149,12 +155,24 @@ export const useFormOrder = () => {
         }
       });
 
-      console.log(objFormOrder);
+      if(newItems.length === 0){
+        closeModalOrder();
+        return alert('Você não adicionou nada novo!')
+      }
+      console.log(orderUpdate);
+      
 
-      /* updateOrderWebSocket(objFormOrder, idFilial!, idOrder!); */
+      updateOrderWebSocket(orderUpdate, idFilial!, idOrder!);
 
-      /* disconnectWebSocket();
-      closeModalOrder(); */
+      socket!.on("updated-order-added", (order: any) => {
+        if(order){
+          setItemObject("listOrders", listItems);
+          setItemObject("orders", order);
+          
+          disconnectWebSocket();
+          closeModalOrder();
+        }
+      });
     } catch (error) {
       console.error(error);
     }

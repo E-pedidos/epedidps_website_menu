@@ -62,7 +62,7 @@ export const FormsSendOrder = () => {
             <input
               className=" border-blue-500 border rounded-lg mt-2 p-1"
               placeholder="Ex: hamburguer sem salada"
-              value={formOrder.observation}
+              value={isOrder ? '' : formOrder.observation}
               onChange={(e) =>
                 setFormOrder({ ...formOrder, observation: e.target.value })
               }

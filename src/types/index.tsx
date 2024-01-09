@@ -59,6 +59,7 @@ export interface ICardOrder {
 }
 
 export interface Item {
+  id?: string
   name: string
   valor: number
   quantity: number
@@ -72,7 +73,9 @@ export interface IOrder {
   total_valor: number
   filialId: string
   id?: string
-  orderItems: Item[]
+  items: Item[]
+  orderItems?: Item[]
+  updatedOrderItems: Item[]
 }
 
 
@@ -80,6 +83,6 @@ export interface IOrderUpdate {
   observation: string
   actual_status: string
   total_valor: number
-  orderItems: Item[]
-  updatedOrderItems: Item[]
+  items: Item[]
+  newItems: Item[]
 }
