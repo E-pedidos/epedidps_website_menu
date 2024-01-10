@@ -87,7 +87,6 @@ export const useFormOrder = () => {
       createOrderWebSocket(objFormOrder, idFilial!);
 
       socket!.on("new-order-added", (order: IOrder) => {
-        console.log(order)
         if (order) {
           setIsOrder(true);
           setItem("idOrder", order.id!);
