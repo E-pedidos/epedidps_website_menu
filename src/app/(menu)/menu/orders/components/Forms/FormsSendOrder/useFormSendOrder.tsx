@@ -75,7 +75,7 @@ export const useFormOrder = () => {
         actual_status: "open",
         items: [
           ...listItems.map((item) => ({
-            id: item.id,
+            itemId: item.id,
             name: item.nameItemOrder,
             valor: Number(item.valueItemOrder * item.quantityItemOrder),
             quantity: Number(item.quantityItemOrder),
@@ -87,6 +87,7 @@ export const useFormOrder = () => {
       createOrderWebSocket(objFormOrder, idFilial!);
 
       socket!.on("new-order-added", (order: IOrder) => {
+        console.log(order)
         if (order) {
           setIsOrder(true);
           setItem("idOrder", order.id!);
@@ -118,7 +119,7 @@ export const useFormOrder = () => {
         actual_status: "newOrder",
         items: [
           ...listItems.map((item) => ({
-            id: item.id,
+            itemId: item.id,
             name: item.nameItemOrder,
             valor: Number(item.valueItemOrder * item.quantityItemOrder),
             quantity: Number(item.quantityItemOrder),
@@ -134,7 +135,7 @@ export const useFormOrder = () => {
             matchingItem.quantityItemOrder - orderListItem.quantityItemOrder;
           if (quantityDifference !== 0) {
             orderUpdate.newItems.push({
-              id: orderListItem.id,
+              itemId: orderListItem.id,
               name: orderListItem.nameItemOrder,
               valor: matchingItem.valueItemOrder * quantityDifference,
               quantity: quantityDifference,
@@ -147,7 +148,7 @@ export const useFormOrder = () => {
         const matchingOrderItem = orderList.find(orderItem => orderItem.nameItemOrder === item.nameItemOrder);
         if (!matchingOrderItem) {
           orderUpdate.newItems.push({
-            id: item.id,
+            itemId: item.id,
             name: item.nameItemOrder,
             valor: item.valueItemOrder * item.quantityItemOrder,
             quantity: item.quantityItemOrder,
@@ -159,9 +160,7 @@ export const useFormOrder = () => {
         closeModalOrder();
         return alert('Você não adicionou nada novo!')
       }
-      console.log(orderUpdate);
       
-
       updateOrderWebSocket(orderUpdate, idFilial!, idOrder!);
 
       socket!.on("updated-order-added", (order: any) => {

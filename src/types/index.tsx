@@ -52,14 +52,14 @@ export interface IMenu {
 }
 
 export interface ICardOrder {
-  id: string
+  id?: string
   nameItemOrder: string
   valueItemOrder: number
   quantityItemOrder: number
 }
 
 export interface Item {
-  id?: string
+  itemId?: string
   name: string
   valor: number
   quantity: number
