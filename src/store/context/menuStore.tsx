@@ -20,13 +20,13 @@ interface IMenuContext {
   removeItemOrder(id: string): void;
   removeQuantifyOrder(id: string): void;
   totalOrder: number;
-  isformsOrderContext: boolean
-  setIsformsOrderContext(isformsOrderContext: boolean): void,
-  foodCategorys: IFoodCategory[],
-  itemsTrending: ICard[],
-  nameFilial: string,
-  avatarUrl: string,
-  isLoading: boolean,
+  isformsOrderContext: boolean;
+  setIsformsOrderContext(isformsOrderContext: boolean): void;
+  foodCategorys: IFoodCategory[];
+  itemsTrending: ICard[];
+  nameFilial: string;
+  avatarUrl: string;
+  isLoading: boolean;
 }
 
 export const MenuContext = createContext<IMenuContext>({} as IMenuContext);
@@ -34,18 +34,18 @@ export const MenuContext = createContext<IMenuContext>({} as IMenuContext);
 export function MenuProvider({ children }: IMenuProps) {
   const [listItems, setListItems] = useState<ICardOrder[]>([]);
   const [totalOrder, setTotalOrder] = useState<number>(0);
-  const [isformsOrderContext, setIsformsOrderContext] = useState(false)
-  const [foodCategorys, setFoodCategorys] = useState<IFoodCategory[]>([])
-  const [itemsTrending, setItemsTrending] = useState<ICard[]>([])
-  const [nameFilial, setNameFilial] = useState<string>("")
-  const [avatarUrl, setAvatarUrl] = useState<string>("")
-  const [isLoading, setIsLoading] = useState(false)
+  const [isformsOrderContext, setIsformsOrderContext] = useState(false);
+  const [foodCategorys, setFoodCategorys] = useState<IFoodCategory[]>([]);
+  const [itemsTrending, setItemsTrending] = useState<ICard[]>([]);
+  const [nameFilial, setNameFilial] = useState<string>("");
+  const [avatarUrl, setAvatarUrl] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [pix, setPix] = useState<string>("");
 
-  const loadItemsFromLocalStorage = ()=>{
+  const loadItemsFromLocalStorage = () => {
     const localListItems = getItemObject("listOrders");
-    return localListItems ? setListItems(localListItems) : null
-  }
-  
+    return localListItems ? setListItems(localListItems) : null;
+  };
 
   const addItemOrder = (item: ICardOrder) => {
     const isItem = listItems.find(
@@ -103,32 +103,33 @@ export function MenuProvider({ children }: IMenuProps) {
 
   const getDataFilial = async () => {
     try {
-      setIsLoading(true)
-      const idFilialLocalStorage = getItem('idFilial')
+      setIsLoading(true);
+      const idFilialLocalStorage = getItem("idFilial");
 
       const { data } = await api.post(
         `/filials/getFilialByQrCode/${idFilialLocalStorage}`,
-        {"sendKey": process.env.NEXT_PUBLIC_KEY_REQ_FILIAL},
-      )
- 
-      if(data){
-        setFoodCategorys(data.filial.foodCategory as IFoodCategory[])
-        setAvatarUrl(data.filial.avatar_url)
-        setNameFilial(data.filial.name)
-        setItemsTrending(data.itemsTrending as ICard[])
-        setIsLoading(false)
+        { sendKey: process.env.NEXT_PUBLIC_KEY_REQ_FILIAL }
+      );
+
+      if (data) {
+        setPix(data.pix_key_filial);
+        setFoodCategorys(data.filial.foodCategory as IFoodCategory[]);
+        setAvatarUrl(data.filial.avatar_url);
+        setNameFilial(data.filial.name);
+        setItemsTrending(data.itemsTrending as ICard[]);
+        setIsLoading(false);
       }
     } catch (error) {
-      console.error(error)
-    }finally {
-      setIsLoading(false)
+      console.error(error);
+    } finally {
+      setIsLoading(false);
     }
-  }
+  };
 
-  useEffect(()=>{
-    loadItemsFromLocalStorage()
-      getDataFilial()
-  }, [])
+  useEffect(() => {
+    loadItemsFromLocalStorage();
+    getDataFilial();
+  }, []);
 
   const valuesContext: IMenuContext = {
     listItems,
@@ -137,18 +138,16 @@ export function MenuProvider({ children }: IMenuProps) {
     totalOrder,
     removeQuantifyOrder,
     isformsOrderContext,
-    setIsformsOrderContext, 
+    setIsformsOrderContext,
     foodCategorys,
     avatarUrl,
     isLoading,
     itemsTrending,
-    nameFilial
-  }
+    nameFilial,
+  };
 
   return (
-    <MenuContext.Provider
-      value={valuesContext}
-    >
+    <MenuContext.Provider value={valuesContext}>
       {children}
     </MenuContext.Provider>
   );
