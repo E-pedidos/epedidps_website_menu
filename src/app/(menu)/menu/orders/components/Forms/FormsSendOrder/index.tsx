@@ -1,7 +1,6 @@
 "use client";
 import { Modal } from "@/app/components/Modal";
 import { useMenuContext } from "@/store/context/menuStore";
-import { IOrder } from "@/types";
 import { useFormOrder } from "./useFormSendOrder";
 
 export const FormsSendOrder = () => {

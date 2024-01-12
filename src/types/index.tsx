@@ -86,3 +86,9 @@ export interface IOrderUpdate {
   items: Item[]
   newItems: Item[]
 }
+
+export interface IOrderClose {
+  observation: string
+  actual_status: string
+}
+
