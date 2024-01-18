@@ -10,10 +10,11 @@ export const ListItems = () => {
     if(listItems.length > 0){
       const item = listItems.find(i => i.quantityItemOrder === 0)
       if (item && item.quantityItemOrder !== undefined) {
-        removeItemOrder(item!.id)
+        removeItemOrder(item!.id!)
       }
     }
   },[listItems])
+
   return (
     <>{
       listItems.length > 0 ? 
