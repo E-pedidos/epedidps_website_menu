@@ -166,7 +166,7 @@ export const useFormOrder = () => {
         if(order){
           setItemObject("listOrders", listItems);
           setItemObject("orders", order);
-          
+
           disconnectWebSocket();
           closeModalOrder();
         }
