@@ -1,5 +1,6 @@
 import { useWebSocket } from "@/store/hook/useWeSocket";
-import { getItem, getItemObject, remove } from "@/store/utils/localStorageUtils";
+import { getItem, remove } from "@/store/utils/localStorageUtils";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface ISelecoes {
@@ -19,6 +20,7 @@ export const useFormCloseOrder = () => {
   const [formOrder, setFormOrder] = useState({
     observation: "",
   });
+  const {push} = useRouter()
   
 
   const handleSelecaoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,11 +59,11 @@ export const useFormCloseOrder = () => {
       socket!.on("updated-order-added", (order: any) => {
         if(order){
           if(order){
-            console.log('enviada')
             remove('orders')
             remove('listOrders')
             remove('idOrder')
             disconnectWebSocket();
+            push('/menu/orders/success')
           }
         } else {
           alert('Algo deu errado!')
