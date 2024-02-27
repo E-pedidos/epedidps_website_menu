@@ -7,29 +7,23 @@ export const Avatar = () => {
 
     return (
       <>
+        <h1 className="font-bold tracking-wider text-x">{nameFilial}</h1>
         {
-          !isLoading ?
-          <>
-            <h1 className="font-bold tracking-wider text-x">{nameFilial}</h1>
-            {
-              avatarUrl &&
-              <div
-                className="h-20 w-20 border-4 border-blue-500 rounded-full"
-              >
-                <Image 
-                  src={avatarUrl}
-                  height={80}
-                  width={80}
-                  alt={`logo ${nameFilial}`}
-                  loading="lazy"
-                  style={{
-                    borderRadius: '50%',
-                  }}
-                />
-              </div>
-            }
-          </>
-          : <Spiner />
+          avatarUrl &&
+          <div
+            className="h-20 w-20 border-4 border-blue-500 rounded-full"
+          >
+            <Image 
+              src={avatarUrl}
+              height={80}
+              width={80}
+              alt={`logo ${nameFilial}`}
+              loading="lazy"
+              style={{
+                borderRadius: '50%',
+              }}
+            />
+          </div>
         }
       </>
     )
