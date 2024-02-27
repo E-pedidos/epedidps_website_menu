@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { formatCurrency } from "@/store/utils/formatCurrency";
 import { CardProps } from "../CardList";
 
 export const CardEmphasis = ({ name, photo_url, valor }: CardProps) => {
@@ -13,7 +13,7 @@ export const CardEmphasis = ({ name, photo_url, valor }: CardProps) => {
       </div>
       <div className="p-2 bg-white">
         <h2 className="text-xs">{name}</h2>
-        <p className="text-xs">R$ {valor}</p>
+        <p className="text-xs">{formatCurrency(Number(valor))}</p>
       </div>
     </div>
   );

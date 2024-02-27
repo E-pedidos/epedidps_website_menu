@@ -1,6 +1,6 @@
 "use client";
-
 import { useMenuContext } from "@/store/context/menuStore";
+import { formatCurrency } from "@/store/utils/formatCurrency";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -61,7 +61,7 @@ export const CardList = ({
         />
       </div>
       <div className="flex items-center justify-between gap-1">
-        <span className="text-green-600">R$ {valor}</span>
+        <span className="text-green-700 font-semibold">{formatCurrency(Number(valor))}</span>
         <div className="flex gap-2 mr-16 pr-8">
           <button className="text-gray-500 text-sm" onClick={handleLess}>
             -
