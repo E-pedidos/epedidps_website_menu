@@ -8,6 +8,7 @@ import {
 } from "@/store/utils/localStorageUtils";
 import { ICardOrder, IOrder, IOrderUpdate } from "@/types";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 interface IFormOrder {
   client_name: string;
@@ -95,6 +96,15 @@ export const useFormOrder = () => {
 
           disconnectWebSocket();
           closeModalOrder();
+          toast('Pedido enviado!', {
+              position: "top-right",
+              autoClose: 800,
+              hideProgressBar: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+          })
         }
       });
     } catch (error) {
@@ -169,6 +179,15 @@ export const useFormOrder = () => {
 
           disconnectWebSocket();
           closeModalOrder();
+          toast('Pedido atualizado!', {
+              position: "top-right",
+              autoClose: 1000,
+              hideProgressBar: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+          })
         }
       });
     } catch (error) {
