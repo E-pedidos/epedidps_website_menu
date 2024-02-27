@@ -53,19 +53,11 @@ export const CardList = ({
           <p className="text-xs text-ellipsis">{description}</p>
         </div>
         <Image
-          width={0}
-          height={0}
+          width={80}
+          height={80}
           alt={name}
           src={photo_url}
           loading="lazy"
-          sizes="100vw"
-          style={{
-            height: "auto",
-            width: "auto",
-            maxHeight: "5rem",
-            maxWidth: "5rem",
-            objectFit: 'cover'
-          }}
         />
       </div>
       <div className="flex items-center justify-between gap-1">

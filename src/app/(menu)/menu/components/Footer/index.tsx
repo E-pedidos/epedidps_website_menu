@@ -24,7 +24,6 @@ export const Footer = () => {
       <div className="group relative">
         <Link
           href='/menu/orders'
-          prefetch
         >
           <Image
             height={18}

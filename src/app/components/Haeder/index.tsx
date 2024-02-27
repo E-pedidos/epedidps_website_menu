@@ -15,18 +15,10 @@ export const HeaderHome = () => {
                     <p className="text-sm">Seu cardapio digital</p>
                     </div>
                     <Image
-                        height={0}
-                        width={0}
+                        height={120}
+                        width={120}
                         src="/logoPrimary.svg"
-                        alt="logo"
-                        sizes="100vw"
-                        style={{
-                            height: 'auto',
-                            width: 'auto',
-                            maxHeight: '100%',
-                            maxWidth: '100%',
-                            marginRight: '1rem'
-                        }}      
+                        alt="logo e-pedidos"    
                     />
                 </div>
             </header>

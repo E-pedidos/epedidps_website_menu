@@ -1,4 +1,3 @@
-'use client'
 import { Spiner } from "@/app/components/Loading"
 import { useMenuContext } from "@/store/context/menuStore"
 import Image from "next/image"
@@ -22,6 +21,7 @@ export const Avatar = () => {
                   height={80}
                   width={80}
                   alt={`logo ${nameFilial}`}
+                  loading="lazy"
                   style={{
                     borderRadius: '50%',
                   }}
