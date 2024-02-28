@@ -1,11 +1,12 @@
 'use client'
 import { getItem } from "@/store/utils/localStorageUtils";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Success(){
     const [idFilial, setIdFilial] = useState<string>('')
+    const {push} = useRouter()
 
     useEffect(()=>{
         const id = getItem('idFilial')
@@ -30,12 +31,12 @@ export default function Success(){
                 <p className="font-semibold">
                     Nós agradecemos sua preferência!
                 </p>
-                <Link
-                    href={`/menu/${idFilial}`}
+                <button
+                    onClick={()=> push(`/menu/${idFilial}`)}
                     className="bg-green-500 p-2 rounded text-white font-semibold"
                 >
                     Voltar para o cardápio
-                </Link>
+                </button>
             </div>
         </main>
     )
