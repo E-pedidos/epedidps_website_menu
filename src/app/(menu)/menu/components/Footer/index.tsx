@@ -2,14 +2,20 @@
 import React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export const Footer = () => {
   const router = useRouter();
+  const path = usePathname()
+
+  if(path === '/menu/orders/success'){
+    return
+  }
 
   const handleMenuClick = () => {
     router.back();
   };
+  
   return (
     <footer className="bg-white flex items-center justify-center gap-10 w-full p-3 fixed bottom-0 custom-border-top">
        <div className="group relative" onClick={handleMenuClick}>
