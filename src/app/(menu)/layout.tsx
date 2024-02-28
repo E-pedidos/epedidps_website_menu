@@ -12,8 +12,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <HeaderMenu />
-      <ProvidersMenu>{children}</ProvidersMenu>
-      <Footer />
+      <ProvidersMenu>
+        {children}
+        <Footer />
+      </ProvidersMenu>
     </>
   );
 }

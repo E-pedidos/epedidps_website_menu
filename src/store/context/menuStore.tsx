@@ -27,6 +27,8 @@ interface IMenuContext {
   nameFilial: string;
   avatarUrl: string;
   isLoading: boolean;
+  totalItems: number;
+  setTotalItems (quantify: number): void
 }
 
 export const MenuContext = createContext<IMenuContext>({} as IMenuContext);
@@ -41,6 +43,7 @@ export function MenuProvider({ children }: IMenuProps) {
   const [avatarUrl, setAvatarUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const [pix, setPix] = useState<string>("");
+  const [totalItems, setTotalItems] = useState<number>(0)
 
   const loadItemsFromLocalStorage = () => {
     const localListItems = getItemObject("listOrders");
@@ -87,17 +90,24 @@ export function MenuProvider({ children }: IMenuProps) {
 
   useEffect(() => {
     let total = 0;
+    let totalItems = 0;
 
     if (listItems.length > 0) {
       const res = listItems.reduce((accumulator, currentItem) => {
-        const itemTotal =
-          currentItem.valueItemOrder * currentItem.quantityItemOrder;
+        const itemTotal = currentItem.valueItemOrder * currentItem.quantityItemOrder;
+        return accumulator + itemTotal;
+      }, 0);
+      total = res;
+
+      const itemsTotal = listItems.reduce((accumulator, currentItem) => {
+        const itemTotal = currentItem.quantityItemOrder;
         return accumulator + itemTotal;
       }, 0);
 
-      total = res;
+      totalItems = itemsTotal
     }
 
+    setTotalItems(totalItems)
     setTotalOrder(total);
   }, [listItems]);
 
@@ -144,6 +154,8 @@ export function MenuProvider({ children }: IMenuProps) {
     isLoading,
     itemsTrending,
     nameFilial,
+    totalItems,
+    setTotalItems
   };
 
   return (
