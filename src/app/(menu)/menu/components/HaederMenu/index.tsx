@@ -5,9 +5,10 @@ import { usePathname } from "next/navigation";
 export const HeaderMenu = () => {
   const path = usePathname()
   
-  if(path === '/menu/orders' || path === '/menu/orders/success'){
+  if(path === '/menu/orders' || path === '/menu/orders/success/'){
     return
   }
+
   return (
     <header className="flex flex-col bg-slate-200 h-52 z-0 relative">
       <div className="flex items-center w-screen justify-between p-2">

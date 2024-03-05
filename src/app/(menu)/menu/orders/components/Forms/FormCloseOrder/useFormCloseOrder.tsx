@@ -63,7 +63,7 @@ export const useFormCloseOrder = () => {
             remove('listOrders')
             remove('idOrder')
             disconnectWebSocket();
-            push('/menu/orders/success')
+            push(`/menu/orders/success/${idFilial}`)
           }
         } else {
           alert('Algo deu errado!')
