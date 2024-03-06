@@ -16,6 +16,7 @@ interface IMenuProps {
 
 interface IMenuContext {
   listItems: ICardOrder[];
+  setListItems: (list:ICardOrder[]) => void,
   addItemOrder(item: ICardOrder): void;
   removeItemOrder(id: string): void;
   removeQuantifyOrder(id: string): void;
@@ -143,6 +144,7 @@ export function MenuProvider({ children }: IMenuProps) {
 
   const valuesContext: IMenuContext = {
     listItems,
+    setListItems,
     addItemOrder,
     removeItemOrder,
     totalOrder,

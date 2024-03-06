@@ -1,3 +1,4 @@
+import { useMenuContext } from "@/store/context/menuStore";
 import { useWebSocket } from "@/store/hook/useWeSocket";
 import { getItem, remove } from "@/store/utils/localStorageUtils";
 import { useRouter } from "next/navigation";
@@ -16,11 +17,19 @@ export const useFormCloseOrder = () => {
     pix: false,
   });
   const [money, setMoney] = useState<number>(0)
-  const {filialConnectWebSocket, closeOrderWebSocket, disconnectWebSocket, socket, connectWebSocket} = useWebSocket()
+  const {
+    filialConnectWebSocket, 
+    closeOrderWebSocket, 
+    disconnectWebSocket, 
+    socket, 
+    connectWebSocket
+  } = useWebSocket()
   const [formOrder, setFormOrder] = useState({
     observation: "",
   });
   const {push} = useRouter()
+  const {setListItems} = useMenuContext()
+  
   
 
   const handleSelecaoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,6 +72,7 @@ export const useFormCloseOrder = () => {
             remove('listOrders')
             remove('idOrder')
             disconnectWebSocket();
+            setListItems([])
             push(`/menu/orders/success/${idFilial}`)
           }
         } else {
