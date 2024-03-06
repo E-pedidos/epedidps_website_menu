@@ -10,9 +10,8 @@ export const Footer = () => {
   const {back} = useRouter()
   
   if(path.startsWith('/menu/orders/success')){
-    return null;
+    return;
   }
-
 
   return (
     <footer className="bg-white flex items-center justify-center gap-10 w-full p-3 fixed bottom-0 custom-border-top">
