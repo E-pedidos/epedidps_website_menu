@@ -5,9 +5,7 @@ import { usePathname } from "next/navigation";
 export const HeaderMenu = () => {
   const path = usePathname()
   
-  if(path.startsWith('/menu/orders')){
-    return
-  }
+  if(path.startsWith('/menu/orders')) return
 
   return (
     <header className="flex flex-col bg-slate-200 h-52 z-0 relative">
