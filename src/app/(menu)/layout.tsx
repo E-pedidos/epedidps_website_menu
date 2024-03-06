@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "./menu/components/Footer";
 import { HeaderMenu } from "./menu/components/HaederMenu";
-import ProvidersMenu from "./providers";
+import ProvidersMenu from "../../store/context/providers";
 
 export const metadata: Metadata = {
   title: "E-pedidos Cardapio",
