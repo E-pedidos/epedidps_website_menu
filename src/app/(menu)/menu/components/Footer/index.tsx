@@ -1,25 +1,34 @@
 'use client'
 import { useMenuContext } from "@/store/context/menuStore";
+import { getItem } from "@/store/utils/localStorageUtils";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export const Footer = () => {
   const path = usePathname()
+  const [idFilial, setIdFilial] = useState<string>('')
   const {totalItems} = useMenuContext()
-  const router = useRouter()
 
-  const handleMenuClick = () => {
-    router.back();
-  };
-  
-  if(path.startsWith('/menu/orders/success')){
-    return;
+  if(path === '/menu/orders/success'){
+    return
   }
+  
+  useEffect(()=>{
+      const id = getItem('idFilial')
+
+      if(id){
+          setIdFilial(id)
+      }
+  }, [])
 
   return (
     <footer className="bg-white flex items-center justify-center gap-10 w-full p-3 fixed bottom-0 custom-border-top">
-        <div className="group relative" onClick={handleMenuClick}>
+        
+        <Link 
+          href={`/menu/${idFilial}`}
+        >
           <Image
             height={20}
             width={20}
@@ -27,9 +36,8 @@ export const Footer = () => {
             alt="home"
             className="transition-transform transform scale-100 group-hover:scale-125"
           />
-        </div>
+        </Link>
      
-
         <Link
           href='/menu/orders'
           className="relative"
