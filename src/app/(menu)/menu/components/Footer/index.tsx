@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useFooter } from "./useFooter";
 
 export const Footer = () => {
-  const {handleRouteBack, renderFooter, totalItems} = useFooter()
+  const {handleRouteBack, totalItems, path} = useFooter()
 
-  if(renderFooter) return
+  if(path.startsWith('/menu/orders/success')) return
 
   return (
     <footer className="bg-white flex items-center justify-center gap-10 w-full p-3 fixed bottom-0 custom-border-top">

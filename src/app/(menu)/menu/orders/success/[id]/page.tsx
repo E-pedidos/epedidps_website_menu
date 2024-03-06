@@ -3,7 +3,12 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 export default function Success({params}: {params: {id: string}}){
-    const {push} = useRouter()
+    const router = useRouter()
+
+    const handlePushMenu = () =>{
+        router.push(`/menu/${params.id}`)
+    }
+
     return(
         <main className="h-screen bg-orange-500 bg-[url('/background.png')] bg-cover flex items-center justify-center">
             <div className="bg-white p-2 rounded-xl flex flex-col items-center justify-center gap-4">
@@ -20,7 +25,7 @@ export default function Success({params}: {params: {id: string}}){
                     Nós agradecemos sua preferência!
                 </p>
                 <button
-                    onClick={()=> push(`/menu/${params.id}`)}
+                    onClick={handlePushMenu}
                     className="bg-green-500 p-2 rounded text-white font-semibold"
                 >
                     Voltar para o cardápio
