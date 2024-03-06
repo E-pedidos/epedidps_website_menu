@@ -7,7 +7,11 @@ import { usePathname, useRouter } from "next/navigation";
 export const Footer = () => {
   const path = usePathname()
   const {totalItems} = useMenuContext()
-  const {back} = useRouter()
+  const router = useRouter()
+
+  const handleMenuClick = () => {
+    router.back();
+  };
   
   if(path.startsWith('/menu/orders/success')){
     return;
@@ -15,9 +19,7 @@ export const Footer = () => {
 
   return (
     <footer className="bg-white flex items-center justify-center gap-10 w-full p-3 fixed bottom-0 custom-border-top">
-        <button 
-          onClick={()=> back()}
-        >
+        <div className="group relative" onClick={handleMenuClick}>
           <Image
             height={20}
             width={20}
@@ -25,8 +27,9 @@ export const Footer = () => {
             alt="home"
             className="transition-transform transform scale-100 group-hover:scale-125"
           />
-        </button>
+        </div>
      
+
         <Link
           href='/menu/orders'
           className="relative"
