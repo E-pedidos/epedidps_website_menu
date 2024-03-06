@@ -10,18 +10,19 @@ export const Footer = () => {
   const path = usePathname()
   const [idFilial, setIdFilial] = useState<string>('')
   const {totalItems} = useMenuContext()
-
-  if(path === '/menu/orders/success'){
-    return
-  }
   
   useEffect(()=>{
-      const id = getItem('idFilial')
+    const id = getItem('idFilial')
 
-      if(id){
-          setIdFilial(id)
-      }
+    if(id){
+        setIdFilial(id)
+    }
   }, [])
+
+  if(path.startsWith('/menu/orders/success')){
+    return null;
+  }
+
 
   return (
     <footer className="bg-white flex items-center justify-center gap-10 w-full p-3 fixed bottom-0 custom-border-top">

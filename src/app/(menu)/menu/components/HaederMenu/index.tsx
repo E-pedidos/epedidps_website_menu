@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 export const HeaderMenu = () => {
   const path = usePathname()
   
-  if(path === '/menu/orders' || path === '/menu/orders/success/'){
+  if(path.startsWith('/menu/orders')){
     return
   }
 
